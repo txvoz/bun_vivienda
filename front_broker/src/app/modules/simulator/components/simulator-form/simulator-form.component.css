@@ -1,0 +1,38 @@
+@font-face {
+    font-family: 'Rubik';
+    src: url('src/assets/font/Rubik/Rubik-VariableFont_wght.ttf') format('ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.custom-simulator-container {
+    padding: 60px 80px 60px 60px;
+    background: #FFFFFF;
+    box-shadow: 0px 7px 26px rgba(207, 220, 230, 0.5);
+    border-radius: 20px;
+}
+
+.content-max-height {
+    min-height: 630px;
+    max-height: 704px;
+}
+
+.total-credit .icon {
+    background-image: url('src/assets/tarjets/item1.png');
+}
+
+
+.value-quota .icon {
+    background-image: url('src/assets/tarjets/item2.png');
+}
+
+.info-result {
+    padding: 5px 30px;
+    background-color: #FCD60F;
+    color: #333F48;
+    border-radius: 5px;
+}
+
+.spacer-2-header {
+    margin-top: 45px;
+}

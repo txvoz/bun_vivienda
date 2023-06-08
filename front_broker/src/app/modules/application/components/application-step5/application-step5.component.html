@@ -1,0 +1,178 @@
+<div class="row custom-credit-application-container spacer">
+    <form [formGroup]="form" (ngSubmit)="submit()">
+        <div class="col-12">
+            <h2 class="bun_blue">Referencias del <br> solicitante</h2>
+        </div>
+        <div class="col-12 spacer">
+            <div class="row">
+                <div class="col-6">
+                    <!---->
+                    <div class="row cont-main">
+                        <label><b>Tipo de referencia</b></label>
+                        <br>
+
+                        <div class="cont-checkbox col-6" *ngFor="let item of referenceTypeItems; index as i">
+                            <input type="radio" name="personalRefer" formControlName="personalRefer"
+                                [id]="'personalRefer_' + i" [value]="item.code" />
+                            <label [for]="'personalRefer_' + i">
+                                <div class="icon icon-{{ item.name?.toLowerCase() }}"></div>
+                                <div class="info">{{ item.name }}</div>
+                            </label>
+                        </div>
+
+                        <div *ngIf="form.controls['personalRefer'].invalid && isSubmited" class="input-feedback">
+                            <label *ngIf="form.controls['personalRefer'].errors?.['required']">
+                                Dato requerido.
+                            </label>
+                        </div>
+
+                    </div>
+                    <!---->
+                </div>
+            </div>
+        </div>
+        <div class="row spacer">
+            <div class="col-4">
+                <label for="personal_ref_full_name">Nombre completo</label>
+                <input type="text" name="personal_ref_full_name" id="personal_ref_full_name"
+                    formControlName="personal_ref_full_name" placeholder="Nombre completo" required
+                    class="form-control form-control-lg" />
+                <div *ngIf="form.controls['personal_ref_full_name'].invalid && isSubmited" class="input-feedback">
+                    <label *ngIf="form.controls['personal_ref_full_name'].errors?.['required']">
+                        Dato requerido.
+                    </label>
+                </div>
+            </div>
+            <div class="col-4">
+                <label for="personal_ref_country">País de residencia</label>
+                <input type="text" name="personal_ref_country" id="personal_ref_country"
+                    formControlName="personal_ref_country" placeholder="País de residencia"
+                    class="form-control form-control-lg" />
+                <div *ngIf="form.controls['personal_ref_country'].invalid && isSubmited" class="input-feedback">
+                    <label *ngIf="form.controls['personal_ref_country'].errors?.['required']">
+                        Dato requerido.
+                    </label>
+                </div>
+            </div>
+            <div class="col-4">
+                <label for="personal_ref_phone">Teléfono</label>
+                <input type="text" name="personal_ref_phone" id="personal_ref_phone"
+                    formControlName="personal_ref_phone" placeholder="Teléfono" required
+                    class="form-control form-control-lg" />
+                <div *ngIf="form.controls['personal_ref_phone'].invalid && isSubmited" class="input-feedback">
+                    <label *ngIf="form.controls['personal_ref_phone'].errors?.['required']">
+                        Dato requerido.
+                    </label>
+                </div>
+            </div>
+        </div>
+        <ng-container *ngIf="form.controls['personalRefer'].value === '2'">
+            <div class="row spacer">
+                <div class="col-4">
+                    <label for="personal_relationship">Parentesco</label>
+
+                    <select id="personal_relationship" formControlName="personal_relationship" name="personal_relationship"
+                        class="form-control form-control-lg" required>
+                        <option value="" selected>Seleccione Parentesco</option>
+                        <option *ngFor="let item of relationshipTypeItems" [ngValue]="item.idValueDomain">
+                            {{item.name}}
+                        </option>
+                    </select>
+
+                    <div *ngIf="form.controls['personal_relationship'].invalid && isSubmited" class="input-feedback">
+                        <label *ngIf="form.controls['personal_relationship'].errors?.['required']">
+                            Dato requerido.
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+
+        <div class="col-12 spacer">
+            <div class="row">
+                <div class="col-6">
+                    <!---->
+                    <div class="row cont-main">
+                        <label><b>Tipo de referencia</b></label>
+                        <br>
+                        <div class="cont-checkbox col-6" *ngFor="let item of referenceTypeItems; index as i">
+                            <input type="radio" name="personalRefer2" formControlName="personalRefer2"
+                                [id]="'personalRefer2_' + i" [value]="item.code" />
+                            <label [for]="'personalRefer2_' + i">
+                                <div class="icon icon-{{ item.name?.toLowerCase() }}"></div>
+                                <div class="info">{{ item.name }}</div>
+                            </label>
+                        </div>
+
+                        <div *ngIf="form.controls['personalRefer2'].invalid && isSubmited" class="input-feedback">
+                            <label *ngIf="form.controls['personalRefer2'].errors?.['required']">
+                                Dato requerido.
+                            </label>
+                        </div>
+
+                    </div>
+                    <!---->
+                </div>
+            </div>
+        </div>
+        <div class="row spacer">
+            <div class="col-4">
+                <label for="family_ref_full_name">Nombre completo</label>
+                <input type="text" name="family_ref_full_name" id="family_ref_full_name"
+                    formControlName="family_ref_full_name" placeholder="Nombre completo" required
+                    class="form-control form-control-lg" />
+                <div *ngIf="form.controls['family_ref_full_name'].invalid && isSubmited" class="input-feedback">
+                    <label *ngIf="form.controls['family_ref_full_name'].errors?.['required']">
+                        Dato requerido.
+                    </label>
+                </div>
+            </div>
+            <div class="col-4">
+                <label for="family_ref_country">País de residencia</label>
+                <input type="text" name="family_ref_country" id="family_ref_country" placeholder="País de residencia"
+                    formControlName="family_ref_country" class="form-control form-control-lg" />
+                <div *ngIf="form.controls['family_ref_country'].invalid && isSubmited" class="input-feedback">
+                    <label *ngIf="form.controls['family_ref_country'].errors?.['required']">
+                        Dato requerido.
+                    </label>
+                </div>
+            </div>
+            <div class="col-4">
+                <label for="family_ref_phone">Teléfono</label>
+                <input type="text" name="family_ref_phone" id="family_ref_phone" formControlName="family_ref_phone"
+                    placeholder="Teléfono" required class="form-control form-control-lg" />
+                <div *ngIf="form.controls['family_ref_phone'].invalid && isSubmited" class="input-feedback">
+                    <label *ngIf="form.controls['family_ref_phone'].errors?.['required']">
+                        Dato requerido.
+                    </label>
+                </div>
+            </div>
+        </div>
+        <ng-container *ngIf="form.controls['personalRefer2'].value === '2'">
+            <div class="row spacer">
+                <div class="col-4">
+                    <label for="family_relationship">Parentesco</label>
+
+                    <select id="family_relationship" formControlName="family_relationship" name="family_relationship"
+                        class="form-control form-control-lg" required>
+                        <option value="" selected>Seleccione Parentesco</option>
+                        <option *ngFor="let item of relationshipTypeItems" [ngValue]="item.idValueDomain">
+                            {{item.name}}
+                        </option>
+                    </select>
+
+                    <div *ngIf="form.controls['family_relationship'].invalid && isSubmited" class="input-feedback">
+                        <label *ngIf="form.controls['family_relationship'].errors?.['required']">
+                            Dato requerido.
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+
+        <div class="col-12 buttons spacer">
+            <button class="btn btn-primary mb-3 float-end principal_blue" type="submit">Siguiente</button>
+            <button class="btn btn-primary mb-3 float-end principal_white" type="button" (click)="back()">Atrás</button>
+        </div>
+    </form>
+</div>

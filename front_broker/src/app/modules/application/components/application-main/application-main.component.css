@@ -1,0 +1,178 @@
+.indicators-content {
+    justify-content: center;
+    text-align: center;
+    max-width: 90%;
+    margin-top: 50px;
+    margin-bottom: 10px;
+}
+
+
+.indicators-content .indicator {
+    border-bottom: 2px solid #BBBCBC;
+}
+
+.indicators-content .indicator label {
+    font-weight: bold;
+    font-size: 12px;
+    margin: 3px 3px;
+    color: #BBBCBC;
+}
+
+.indicators-content .indicator .cover-checkbox {
+    display: inline-block;
+    position: relative;
+    right: 5px;
+    top: 3px;
+    z-index: 1;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: transparent;
+    border: 2px solid #C4C4C4;
+}
+
+.indicators-content .indicator .cover-checkbox svg {
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    vertical-align: top;
+    fill: none;
+    margin: 1px 0 0 0;
+    stroke: #fff;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 16px;
+    stroke-dashoffset: 16px;
+}
+
+.indicators-content .indicator.active,
+.indicators-content .indicator.confirmed {
+    border-bottom-color: #15A4E0;
+}
+
+.indicators-content .indicator.active label,
+.indicators-content .indicator.confirmed label {
+    color: #15A4E0;
+}
+
+.indicators-content .indicator.active .cover-checkbox {
+    border-color: #15A4E0;
+}
+
+.indicators-content .indicator.confirmed .cover-checkbox {
+    transform: scale(1);
+    border-color: #15A4E0;
+    background-color: #15A4E0;
+}
+
+.indicators-content .indicator.confirmed .cover-checkbox svg {
+    stroke-dashoffset: 0;
+}
+
+.custom-credit-application-container {
+    padding: 60px 130px;
+    background: #FFFFFF;
+    box-shadow: 0px 7px 26px rgba(207, 220, 230, 0.5);
+    border-radius: 20px;
+}
+
+.radio-order input, .radio-order label {
+    margin-right: 10px;
+}
+
+.buttons button {
+    margin-left: 10px;
+}
+
+.content-person {
+    padding: 10px;
+    background: #FFFFFF;
+    box-shadow: 0px 3px 8px #D4DCDF;
+    margin-right: 15px;
+    margin-top: 15px;
+    width: 250;
+    max-width: 250;
+    position: relative;
+}
+
+.content-person.active {
+    border: 1px solid #15A4E0;
+}
+
+.content-person .avatar {
+    background-color: #15A4E0;
+    color: #fff;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: inline-flex;
+    margin-right: 5px;
+}
+
+.content-person .group {
+    vertical-align: top;
+    display: inline-block;
+    width: 178px;
+} 
+
+.content-person .group .name {
+    vertical-align: top;
+    font-weight: bold;
+    color: #333F48;
+    
+}
+
+.content-person .group .type {
+    font-size: 12px;
+    color: #333F48;
+    width: 100%;
+}
+
+.content-person button {
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #000;
+    font-size: 12px;
+    width: 60px;
+    padding: 3px 40px;
+    display: inline-flex;
+    text-align: center;
+    margin-right: 5px;
+}
+
+.content-person button.delete {
+    color: #828285;
+    border-color: #828285;
+}
+
+.content-person button.edit {
+    color: #15A4E0;
+    border-color: #15A4E0;
+}
+
+.row .content-person:nth-child(4n+1) .avatar {
+    background-color: #15A4E0;
+}
+
+.row .content-person:nth-child(4n+2) .avatar{
+    background-color: #DF4661;
+}
+
+.row .content-person:nth-child(4n+3) .avatar{
+    background-color: #BEC1FF;
+}
+
+.row .content-person:nth-child(4n+4) .avatar{
+    background-color: #9CEBFF;
+}
+
+.row .content-person:nth-child(4n+5) .avatar{
+    background-color: #333F48;
+}
+
+.row .content-person:nth-child(4n+6) .avatar{
+    background-color: #FFDD00;
+}

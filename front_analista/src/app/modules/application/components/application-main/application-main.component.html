@@ -1,0 +1,134 @@
+<div class="jumbotron">
+    <app-navbar></app-navbar>
+    <div class="container" *ngIf="indexCurrentUser>-1">
+
+        <div class="row justify-content-center align-items-center spacer" >
+            <div class="col-12 justify-content-center align-items-center text-center spacer" >
+                <ng-container *ngIf="isNew+'' === 'true'; else secondTitle">
+                    <h1 class="fw-bold spacer">Formulario de solicitud de Crédito de Vivienda</h1>
+                </ng-container>
+                <ng-template #secondTitle>
+                    <h1 class="fw-bold spacer">Formulario de  inscripción participante</h1>
+                </ng-template>
+            </div>
+        </div>
+        
+        <div class="row justify-content-center align-items-center" >
+            
+            <div class="row container-fluid h-custom mt-5 indicators-content">
+                
+                <ng-container *ngFor="let item of items; index as i" > 
+                    <div *ngIf="i > 0 || (i===0 && users.length === 0)" class="col-2 justify-content-center align-items-center">
+                        <div (click)="change(item.step)" class="indicator" [ngClass]="{'active':item.status==='active', 'confirmed':item.status==='confirmed'}" >
+                            <div>
+                                <span class="cover-checkbox">
+                                    <svg width="10" height="7" viewBox="0 0 10 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M1.49512 3.85714L3.82845 5.99999L8.49512 1" stroke="white" stroke-width="1.22581" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </span>
+                            </div>
+                            <label>{{item.label}}</label>
+                        </div>
+                    </div>
+                </ng-container>
+
+                
+            </div>
+        </div>
+
+        <ng-container *ngIf="users.length > 0">
+            <div class="row custom-credit-application-container spacer" >
+                <div class="col-12">
+                    <h2 class="bun_blue">Participantes asociados al crédito</h2>
+                </div>
+                <div class="col-12">
+                    <div class="row">
+                        <div 
+                        class="col-auto content-person" 
+                        *ngFor="let user of users; index as i"
+                        [ngClass]="{'active' : indexCurrentUser==i}" >
+                            <div class="avatar">{{getAvatar(user)}}</div>
+                            <div class="group">
+                                <label class="name">{{user?.applicantDetails?.first_name}} {{user?.applicantDetails?.first_lastname}}</label>
+                                <ng-container *ngIf="i === 0; else secondTitle">
+                                    <label class="type">Titular</label>
+                                </ng-container>
+                                <ng-template #secondTitle>
+                                    <ng-container *ngIf="user.applicantDetails?.customer_type === '1'; else thirtTitle">
+                                        <label class="type">Deudor</label>
+                                    </ng-container>
+                                </ng-template>
+                                <ng-template #thirtTitle>
+                                    <ng-container *ngIf="user.applicantDetails?.customer_type === '2'">
+                                        <label class="type">Codeudor</label>
+                                    </ng-container>
+                                </ng-template>
+                                <div class="actions">
+                                    <ng-container *ngIf="i+'' !== '0'; else secondTitle">
+                                        <button class="delete" (click)="deleteUser(i)"> Eliminar </button>
+                                    </ng-container>
+                                    <button class="edit" (click)="editUser(i)"> Editar </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+
+        <ng-container *ngIf="activeStep == 1">
+            <app-application-step1
+            (applicationStep1ToMain)="applicationStep1ToMain($event)"
+            ></app-application-step1>
+        </ng-container>
+
+        <ng-container  *ngIf="activeStep == 2">
+            <app-application-step2
+            [isNew]=isNew
+            [indexUser]=indexCurrentUser
+            [user]=currentUser
+            (applicationStep2ToMain)="applicationStep2ToMain($event)"
+            (backToMain)="backToMain($event)"
+            ></app-application-step2>
+        </ng-container>
+
+        <ng-container  *ngIf="activeStep == 3">
+            <app-application-step3
+            [isNew]=isNew
+            [indexUser]=indexCurrentUser
+            [user]=currentUser
+            (applicationStep3ToMain)="applicationStep3ToMain($event)"
+            (backToMain)="backToMain($event)"
+            ></app-application-step3>
+        </ng-container>
+
+        <ng-container  *ngIf="activeStep == 4">
+            <app-application-step4
+            [isNew]=isNew
+            [indexUser]=indexCurrentUser
+            [user]=currentUser
+            (applicationStep4ToMain)="applicationStep4ToMain($event)"
+            (backToMain)="backToMain($event)"
+            ></app-application-step4>
+        </ng-container>
+
+        <ng-container  *ngIf="activeStep == 5">
+            <app-application-step5
+            [isNew]=isNew
+            [indexUser]=indexCurrentUser
+            [user]=currentUser
+            (applicationStep5ToMain)="applicationStep5ToMain($event)"
+            (backToMain)="backToMain($event)"
+            ></app-application-step5>
+        </ng-container>
+
+        <ng-container  *ngIf="activeStep == 6">
+            <app-application-step6
+            (applicationStep6ToMain)="applicationStep6ToMain($event)"
+            (backToMain)="backToMain($event)"
+            ></app-application-step6>
+        </ng-container>
+        
+    </div>
+    <app-footer></app-footer>
+</div>

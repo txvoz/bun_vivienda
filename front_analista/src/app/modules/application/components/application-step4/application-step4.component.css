@@ -1,0 +1,64 @@
+.without-border-rigth {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-right: 0px;
+    width: 70%;
+    display: initial;
+}
+.without-border-left {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    position: absolute;
+    display: initial;
+}
+
+.flexbox-container {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.title_icon {
+    display: inline-flex;
+    position: relative;
+    min-width: 40px;
+    min-height: 40px;
+    max-width: 40px;
+    max-height: 40px;
+    top: -3px;
+    margin-right: 3px;
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+.title_icon.prestamos {
+    background-image: url('src/assets/step-4-icons/prestamos.png');
+}
+
+.title_icon.tarjetas {
+    background-image: url('src/assets/step-4-icons/tarjetas.png');
+}
+
+.title_icon.otras_deudas {
+    background-image: url('src/assets/step-4-icons/otras_deudas.png');
+}
+
+.title_icon.vehiculo {
+    background-image: url('src/assets/step-4-icons/vehiculo.png');
+}
+
+.title_icon.propiedad {
+    background-image: url('src/assets/step-4-icons/propiedad.png');
+}
+
+.title_icon.total_activos {
+    background-image: url('src/assets/step-4-icons/total_activos.png');
+}
+
+.title_icon.ingresos {
+    background-image: url('src/assets/step-4-icons/ingresos_egresos.png');
+}
+
+.title_icon.egresos {
+    background-image: url('src/assets/step-4-icons/ingresos_egresos.png');
+}

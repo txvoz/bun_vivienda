@@ -1,0 +1,161 @@
+<div class="jumbotron">
+    <app-navbar></app-navbar>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-7">
+                <section class="container-fluid h-custom mt-5 custom-simulator-container content-max-height">
+                    <div class="row">
+                        <form [formGroup]="form" (ngSubmit)="submit()">
+                            <div class="col-12">
+                                <h2 class="bun_blue">Simulador del crédito</h2>
+                                <input type="checkbox" formControlName="isUpdated" name="isUpdated" id="isUpdated" />
+                                <label class="label-16 margin-left-5px" for="isUpdated">Esta es una
+                                    actualización de una solicitud hecha anteriormente.</label>
+                            </div>
+                            <div class="col-12 spacer">
+                                <!---->
+                                <div class="row cont-main">
+                                    <label><b>Modalidad</b></label>
+                                    <br>
+                                    <div class="cont-checkbox col-6" *ngFor="let item of items; index as i">
+                                        <input type="radio" name="modality" formControlName="modality"
+                                            [id]="'modality-' + i" [value]="item.value" />
+                                        <label [for]="'modality-' + i">
+                                            <div class="icon {{ item.className }}"></div>
+                                            <div class="info">{{ item.label }}</div>
+                                        </label>
+                                    </div>
+                                    <div *ngIf="form.controls['modality'].invalid && isSubmited"
+                                        class="input-feedback">
+                                        <label *ngIf="form.controls['modality'].errors?.['required']">
+                                            Dato requerido.
+                                        </label>
+                                    </div>
+                                </div>
+                                <!---->
+                            </div>
+                            <div class="col-12 spacer">
+                                <label for="value_total">Valor de la vivienda</label>
+                                <input 
+                                    type="number" name="value_total" id="value_total" min="10000000" pattern="^[0-9]+" onkeypress="return event.charCode >= 48"
+                                    formControlName="value_total" placeholder="Ingrese el valor de la vivienda"
+                                    class="form-control form-control-lg" />
+
+                                <div *ngIf="form.controls['value_total'].invalid && isSubmited" class="input-feedback">
+                                    <label *ngIf="form.controls['value_total'].errors?.['required']">
+                                        Dato requerido.
+                                    </label>
+                                    <label *ngIf="form.controls['value_total'].errors?.['min']">
+                                        Dato minimo $1.000,0000.
+                                    </label>
+                                </div>
+
+                            </div>
+                            <div class="col-12 spacer">
+                                <label for="percent_value">% de financiacion</label>
+                                <input type="number" name="percent_value" id="percent_value" min="1" max="100" pattern="^[0-9]+" onkeypress="return event.charCode >= 48"
+                                    formControlName="percent_value" placeholder="Porcentaje de financiacion"
+                                    class="form-control form-control-lg" />
+                                <div *ngIf="form.controls['percent_value'].invalid && isSubmited"
+                                    class="input-feedback">
+                                    <label *ngIf="form.controls['percent_value'].errors?.['required']">
+                                        Dato requerido.
+                                    </label>
+                                    <label *ngIf="form.controls['percent_value'].errors?.['min']">
+                                        Dato minimo 1.
+                                    </label>
+                                    <label *ngIf="form.controls['percent_value'].errors?.['max']">
+                                        Dato minimo 100.
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-12 spacer">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <label for="tasa_ea">% Tasa (EA)</label>
+                                        <input type="number" name="tasa_ea" id="tasa_ea" formControlName="tasa_ea" min="1" max="100" pattern="^[0-9]+" onkeypress="return event.charCode >= 48"
+                                            placeholder="Tasa efectivo anual" class="form-control form-control-lg" />
+
+                                        <div *ngIf="form.controls['tasa_ea'].invalid && isSubmited"
+                                            class="input-feedback">
+                                            <label *ngIf="form.controls['tasa_ea'].errors?.['required']">
+                                                Dato requerido.
+                                            </label>
+                                            <label *ngIf="form.controls['tasa_ea'].errors?.['min']">
+                                                Dato minimo 1.
+                                            </label>
+                                            <label *ngIf="form.controls['tasa_ea'].errors?.['max']">
+                                                Dato minimo 100.
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="count_years">Plazo en años</label>
+                                        <select id="count_years" formControlName="count_years" name="count_years"
+                                            class="form-control form-control-lg">
+                                            <option value="" selected>Seleccione plazo</option>
+                                            <option *ngFor="let year of yearsItems" [ngValue]="year.idValueDomain">
+                                                {{year.code}} años
+                                            </option>
+                                        </select>
+                                        <div *ngIf="form.controls['count_years'].invalid && isSubmited"
+                                            class="input-feedback">
+                                            <label *ngIf="form.controls['count_years'].errors?.['required']">
+                                                Dato requerido.
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 buttons spacer">
+                                <!--[disabled]="form.invalid"-->
+                                <button class="btn btn-primary mb-3 float-end principal_white" type="submit">
+                                    Simular
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+            </div>
+            <div class="col-sm-5 ">
+                <section class="container-fluid h-custom mt-5 custom-simulator-container content-max-height">
+                    <div class="col-12 spacer-2-header"></div>
+                    <div class="col-12">
+                        <h2 class="bun_blue">Simulación crédito <br> de vivienda</h2>
+                    </div>
+                    <div class="col-12 spacer">
+                        <section class="info-card total-credit">
+                            <div class="icon "></div>
+                            <div class="info">
+                                <label>Monto del crédito</label>
+                                <p>{{ credit_amount | currency: 'USD' | lowercase }}</p>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="col-12 spacer">
+                        <section class="info-card value-quota">
+                            <div class="icon "></div>
+                            <div class="info">
+                                <label>Valor de la cuota</label>
+                                <p>{{ quota_value | currency: 'USD' | lowercase }}</p>
+                            </div>
+                        </section>
+                    </div>
+                    <ng-container *ngIf="isValidate">
+                        <div class="col-12 spacer">
+                            <div class="info-result">
+                                *Estos son valores aproximados, y se tomará la tasa vigente al momento del desembolso.
+                            </div>
+                        </div>
+                    </ng-container>
+
+                    <div class="col-12 buttons spacer">
+                        <button class="btn btn-primary mb-3 float-end principal_blue" type="submit"
+                            [disabled]="!isValidate" (click)="next()">Solicitar</button>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+    <app-footer></app-footer>
+</div>

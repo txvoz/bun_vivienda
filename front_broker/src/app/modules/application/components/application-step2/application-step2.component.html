@@ -1,0 +1,451 @@
+<div class="row custom-credit-application-container spacer">
+    <form [formGroup]="form" (ngSubmit)="submit()">
+        <div class="col-12">
+            <h2 class="bun_blue">Ingresa los datos del solicitante</h2>
+        </div>
+
+        <ng-container *ngIf="indexUser !== 0">
+            <div class="col-12 spacer">
+                <div class="row">
+                    <div class="col-6">
+                        <!---->
+                        <div class="row cont-main">
+                            <label><b>Tipo de participante</b></label>
+                            <br>
+                            <div class="cont-checkbox col-6" *ngFor="let item of tarjets; index as i">
+                                <input type="radio" name="customer_type" [id]="'customer_type_' + i"
+                                    [value]="item.value" formControlName="customer_type" required />
+                                <label [for]="'customer_type_' + i">
+                                    <div class="icon {{ item.className }}"></div>
+                                    <div class="info">{{ item.label }}</div>
+                                </label>
+                            </div>
+                            <div *ngIf="form.controls['customer_type'].invalid && isSubmited" class="input-feedback">
+                                <label *ngIf="form.controls['customer_type'].errors?.['required']">
+                                    Dato requerido.
+                                </label>
+                            </div>
+                        </div>
+                        <!---->
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+
+        <div class="row spacer">
+            <div class="col-12 spacer">
+                <h4 class="bun_blue">Información personal del solicitante</h4>
+            </div>
+        </div>
+        <div class="row spacer">
+            <div class="col-4">
+                <label for="first_name">Primer nombre</label>
+                <input type="text" name="first_name" id="first_name" formControlName="first_name"
+                    placeholder="Primer nombre" required class="form-control form-control-lg" />
+                <div *ngIf="form.controls['first_name'].invalid && isSubmited" class="input-feedback">
+                    <label *ngIf="form.controls['first_name'].errors?.['required']">
+                        Dato requerido.
+                    </label>
+                </div>
+            </div>
+            <div class="col-4">
+                <label for="second_name">Segundo nombre (Opcional)</label>
+                <input type="text" name="second_name" id="second_name" formControlName="second_name"
+                    placeholder="Segundo nombre" class="form-control form-control-lg" />
+                <div *ngIf="form.controls['second_name'].invalid && isSubmited" class="input-feedback">
+                    <label *ngIf="form.controls['second_name'].errors?.['required']">
+                        Dato requerido.
+                    </label>
+                </div>
+            </div>
+            <div class="col-4">
+                <label for="first_lastname">Primer apellido</label>
+                <input type="text" name="first_lastname" id="first_lastname" formControlName="first_lastname"
+                    placeholder="Primer apellido" required class="form-control form-control-lg" />
+                <div *ngIf="form.controls['first_lastname'].invalid && isSubmited" class="input-feedback">
+                    <label *ngIf="form.controls['first_lastname'].errors?.['required']">
+                        Dato requerido.
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="row spacer">
+            <div class="col-4">
+                <label for="second_lastname">Segundo apellido (Opcional)</label>
+                <input type="text" name="second_lastname" id="second_lastname" formControlName="second_lastname"
+                    placeholder="Segundo apellido" required class="form-control form-control-lg" />
+                <div *ngIf="form.controls['second_lastname'].invalid && isSubmited" class="input-feedback">
+                    <label *ngIf="form.controls['second_lastname'].errors?.['required']">
+                        Dato requerido.
+                    </label>
+                </div>
+            </div>
+            <div class="col-4">
+                <label for="gender">Género</label>
+                <select id="gender" formControlName="gender" name="gender" class="form-control form-control-lg">
+                    <option value="" selected>Seleccione genero</option>
+                    <option *ngFor="let gender of gendersItems" [ngValue]="gender.idValueDomain">
+                        {{gender.name}}
+                    </option>
+                </select>
+
+                <div *ngIf="form.controls['gender'].invalid && isSubmited" class="input-feedback">
+                    <label *ngIf="form.controls['gender'].errors?.['required']">
+                        Dato requerido.
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="row spacer">
+            <div class="col-4">
+                <label for="type_identification">Tipo de identificación</label>
+                <select id="type_identification" formControlName="type_identification" name="type_identification"
+                    class="form-control form-control-lg">
+                    <option value="" selected>Seleccione tipo de identificacion</option>
+                    <option *ngFor="let type of documentTypesItems" [ngValue]="type.idValueDomain">
+                        {{type.name}}
+                    </option>
+                </select>
+
+                <div *ngIf="form.controls['type_identification'].invalid && isSubmited" class="input-feedback">
+                    <label *ngIf="form.controls['type_identification'].errors?.['required']">
+                        Dato requerido.
+                    </label>
+                </div>
+            </div>
+            <div class="col-4">
+                <label for="num_identification">Número de documento</label>
+                <input type="number" name="num_identification" id="num_identification"
+                    formControlName="num_identification" placeholder="Numero de identificación" required
+                    class="form-control form-control-lg" />
+                <div *ngIf="form.controls['num_identification'].invalid && isSubmited" class="input-feedback">
+                    <label *ngIf="form.controls['num_identification'].errors?.['required']">
+                        Dato requerido.
+                    </label>
+                </div>
+            </div>
+            <div class="col-4">
+                <label for="expedition_date">Fecha de expedición</label>
+                <input type="date" name="expedition_date" id="expedition_date" formControlName="expedition_date"
+                    required class="form-control form-control-lg" />
+                <div *ngIf="form.controls['expedition_date'].invalid && isSubmited" class="input-feedback">
+                    <label *ngIf="form.controls['expedition_date'].errors?.['required']">
+                        Dato requerido.
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="row spacer">
+            <div class="col-12 spacer">
+                <h4 class="bun_blue">Nacionalidad</h4>
+            </div>
+        </div>
+        <div class="row spacer">
+            <div class="col-3 radio-order">
+                <label><b>Tipo de nacionalidad </b></label> <br>
+                <input type="radio" value="1" name="nationality_type" id="nationality_type_1"
+                    formControlName="nationality_type" /> <label for="nationality_type_1">Nacional</label>
+                <input type="radio" value="2" name="nationality_type" id="nationality_type_2"
+                    formControlName="nationality_type" /> <label for="nationality_type_2">Extranjero</label>
+                <div *ngIf="form.controls['nationality_type'].invalid && isSubmited" class="input-feedback">
+                    <label *ngIf="form.controls['nationality_type'].errors?.['required']">
+                        Dato requerido.
+                    </label>
+                </div>
+            </div>
+            <div class="col-4">
+                <label for="origin_country">País de nacionalidad</label>
+                <select id="origin_country" formControlName="origin_country" name="origin_country"
+                    class="form-control form-control-lg">
+                    <option value="" selected>Seleccione país de nacionalidad</option>
+                    <option *ngFor="let item of countriesItems" [ngValue]="item.idValueDomain">
+                        {{item.description}}
+                    </option>
+                </select>
+
+                <div *ngIf="form.controls['origin_country'].invalid && isSubmited" class="input-feedback">
+                    <label *ngIf="form.controls['origin_country'].errors?.['required']">
+                        Dato requerido.
+                    </label>
+                </div>
+            </div>
+            <div class="col-4">
+                <label for="location_born">Lugar de nacimiento</label>
+                <input type="text" name="location_born" id="location_born" formControlName="location_born"
+                    placeholder="Lugar de nacimiento" required class="form-control form-control-lg" />
+                <div *ngIf="form.controls['location_born'].invalid && isSubmited" class="input-feedback">
+                    <label *ngIf="form.controls['location_born'].errors?.['required']">
+                        Dato requerido.
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="row spacer">
+            <div class="col-4">
+                <label for="born_date">Fecha de nacimiento</label>
+                <input type="date" name="born_date" id="born_date" formControlName="born_date" required
+                    class="form-control form-control-lg" />
+                <div *ngIf="form.controls['born_date'].invalid && isSubmited" class="input-feedback">
+                    <label *ngIf="form.controls['born_date'].errors?.['required']">
+                        Dato requerido.
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="row spacer">
+            <div class="col-12 spacer">
+                <h4 class="bun_blue">Residencia</h4>
+            </div>
+        </div>
+        <div class="row spacer">
+            <div class="col-4">
+                <label for="home_country">País de residencia</label>
+                <select id="home_country" formControlName="home_country" name="home_country"
+                    class="form-control form-control-lg">
+                    <option value="" selected>Seleccione país</option>
+                    <option *ngFor="let item of countriesItems" [ngValue]="item.idValueDomain">
+                        {{item.description}}
+                    </option>
+                </select>
+
+                <div *ngIf="form.controls['home_country'].invalid && isSubmited" class="input-feedback">
+                    <label *ngIf="form.controls['home_country'].errors?.['required']">
+                        Dato requerido.
+                    </label>
+                </div>
+            </div>
+            <div class="col-4">
+                <label for="home_department">Estado de residencia</label>
+                <input type="text" name="home_department" id="home_department" formControlName="home_department"
+                    placeholder="Departamento de residenica" class="form-control form-control-lg" />
+                <div *ngIf="form.controls['home_department'].invalid && isSubmited" class="input-feedback">
+                    <label *ngIf="form.controls['home_department'].errors?.['required']">
+                        Dato requerido.
+                    </label>
+                </div>
+            </div>
+            <div class="col-4">
+                <label for="home_city">Ciudad de residencia</label>
+                <select id="home_city" formControlName="home_city" name="home_city"
+                    class="form-control form-control-lg">
+                    <option value="" selected>Seleccione ciudad</option>
+                    <option *ngFor="let item of citiesItems" [ngValue]="item.idValueDomain">
+                        {{item.name}}
+                    </option>
+                </select>
+                
+                <div *ngIf="form.controls['home_city'].invalid && isSubmited" class="input-feedback">
+                    <label *ngIf="form.controls['home_city'].errors?.['required']">
+                        Dato requerido.
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="row spacer">
+            <div class="col-4">
+                <label for="time_abroad">¿Cuanto tiempo lleva viviendo en el exterior?</label>
+                <select id="time_abroad" formControlName="time_abroad" name="time_abroad"
+                    class="form-control form-control-lg">
+                    <option value="" selected>Seleccione cantidad de años</option>
+                    <option *ngFor="let type of timeResidenceAbroadItems" [ngValue]="type.idValueDomain">
+                        {{type.name}}
+                    </option>
+                </select>
+
+                <div *ngIf="form.controls['time_abroad'].invalid && isSubmited" class="input-feedback">
+                    <label *ngIf="form.controls['time_abroad'].errors?.['required']">
+                        Dato requerido.
+                    </label>
+                </div>
+            </div>
+            <div class="col-4">
+                <label for="adress_home">Dirección de residencia</label>
+                <input type="text" name="adress_home" id="adress_home" formControlName="adress_home"
+                    placeholder="Dirección de residencia" class="form-control form-control-lg" />
+                <div *ngIf="form.controls['adress_home'].invalid && isSubmited" class="input-feedback">
+                    <label *ngIf="form.controls['adress_home'].errors?.['required']">
+                        Dato requerido.
+                    </label>
+                </div>
+            </div>
+            <div class="col-4">
+                <label for="zip">Código ZIP</label>
+                <input type="text" name="zip" id="zip" formControlName="zip" placeholder="Código ZIP" required
+                    class="form-control form-control-lg" />
+                <div *ngIf="form.controls['zip'].invalid && isSubmited" class="input-feedback">
+                    <label *ngIf="form.controls['zip'].errors?.['required']">
+                        Dato requerido.
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="row spacer">
+            <div class="col-4">
+                <label for="studies_level">Nivel de estudios</label>
+                <select id="studies_level" formControlName="studies_level" name="studies_level"
+                    class="form-control form-control-lg">
+                    <option value="" selected>Seleccione nivel de estudios</option>
+                    <option *ngFor="let item of levelStudiesItems" [ngValue]="item.idValueDomain">
+                        {{item.name}}
+                    </option>
+                </select>
+
+                <div *ngIf="form.controls['studies_level'].invalid && isSubmited" class="input-feedback">
+                    <label *ngIf="form.controls['studies_level'].errors?.['required']">
+                        Dato requerido.
+                    </label>
+                </div>
+            </div>
+            <div class="col-4">
+                <label for="ocupation">Ocupación/Profesión</label>
+                <input type="text" name="ocupation" id="ocupation" formControlName="ocupation"
+                    placeholder="Ocupación/Profesión" required class="form-control form-control-lg" />
+                <div *ngIf="form.controls['ocupation'].invalid && isSubmited" class="input-feedback">
+                    <label *ngIf="form.controls['ocupation'].errors?.['required']">
+                        Dato requerido.
+                    </label>
+                </div>
+            </div>
+            <div class="col-4">
+                <label for="civil_status">Estado civil</label>
+                <select id="civil_status" formControlName="civil_status" name="civil_status"
+                    class="form-control form-control-lg">
+                    <option value="" selected>Seleccione estado civil</option>
+                    <option *ngFor="let type of civilStatusItems" [ngValue]="type.idValueDomain">
+                        {{type.name}}
+                    </option>
+                </select>
+
+                <div *ngIf="form.controls['civil_status'].invalid && isSubmited" class="input-feedback">
+                    <label *ngIf="form.controls['civil_status'].errors?.['required']">
+                        Dato requerido.
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="row spacer">
+            <div class="col-4">
+                <label for="dependents">Número de personas a cargo</label>
+                <select id="dependents" formControlName="dependents" name="dependents"
+                    class="form-control form-control-lg">
+                    <option value="" selected>Seleccione cantidad de dependientes</option>
+                    <option *ngFor="let type of numberDependentsItems" [ngValue]="type.idValueDomain">
+                        {{type.code}}
+                    </option>
+                </select>
+                <div *ngIf="form.controls['dependents'].invalid && isSubmited" class="input-feedback">
+                    <label *ngIf="form.controls['dependents'].errors?.['required']">
+                        Dato requerido.
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="row spacer">
+            <div class="col-5 radio-order">
+                <label><b>Selecciona el tipo de residencia </b></label> <br>
+
+                <span *ngFor="let item of residenceTypeItems; index as i">
+                    <input   type="radio" [value]="item.idValueDomain" name="home_type" [id]="'home_type_' + i" formControlName="home_type" /> 
+                    <label [for]="'home_type_' + i">{{item.name}}</label>
+                </span>
+                
+                
+                
+                <!--<input type="radio" value="2" name="home_type" id="home_type_2" formControlName="home_type" /> <label
+                    for="home_type_2">Familiar</label>
+                <input type="radio" value="3" name="home_type" id="home_type_3" formControlName="home_type" /> <label
+                    for="home_type_3">Arrendada</label>-->
+
+
+                <div *ngIf="form.controls['home_type'].invalid && isSubmited" class="input-feedback">
+                    <label *ngIf="form.controls['home_type'].errors?.['required']">
+                        Dato requerido.
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="row spacer">
+            <div class="col-12 spacer">
+                <h4 class="bun_blue">Información de contacto</h4>
+            </div>
+        </div>
+        <div class="row spacer">
+            <div class="col-4">
+                <label for="cellphone">Celular</label>
+                <input type="number" name="cellphone" id="cellphone" formControlName="cellphone" placeholder="Celular"
+                    required class="form-control form-control-lg" />
+                <div *ngIf="form.controls['cellphone'].invalid && isSubmited" class="input-feedback">
+                    <label *ngIf="form.controls['cellphone'].errors?.['required']">
+                        Dato requerido.
+                    </label>
+                </div>
+            </div>
+            <div class="col-4">
+                <label for="email">Correo electrónico</label>
+                <input type="email" name="email" id="email" formControlName="email" placeholder="Correo electrónico"
+                    required class="form-control form-control-lg" />
+                <div *ngIf="form.controls['email'].invalid && isSubmited" class="input-feedback">
+                    <label *ngIf="form.controls['email'].errors?.['required']">
+                        Dato requerido.
+                    </label>
+                </div>
+            </div>
+            <div class="col-4">
+                <label for="zip_city">Ciudad en Colombia para correspondencia</label>
+                <select id="zip_city" formControlName="zip_city" name="zip_city"
+                    class="form-control form-control-lg">
+                    <option value="" selected>Seleccione ciudad</option>
+                    <option *ngFor="let item of citiesItems" [ngValue]="item.idValueDomain">
+                        {{item.name}}
+                    </option>
+                </select>
+
+                <div *ngIf="form.controls['zip_city'].invalid && isSubmited" class="input-feedback">
+                    <label *ngIf="form.controls['zip_city'].errors?.['required']">
+                        Dato requerido.
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="row spacer">
+            <div class="col-4">
+                <label for="address_zip">Dirección en Colombia para correspondencia</label>
+                <input type="text" name="address_zip" id="address_zip" formControlName="address_zip"
+                    placeholder="Dirección en Colombia para correspondencia" required
+                    class="form-control form-control-lg" />
+                <div *ngIf="form.controls['address_zip'].invalid && isSubmited" class="input-feedback">
+                    <label *ngIf="form.controls['address_zip'].errors?.['required']">
+                        Dato requerido.
+                    </label>
+                </div>
+            </div>
+            <div class="col-4">
+                <label for="colombian_phone">Telefono en Colombia</label>
+                <input type="text" name="colombian_phone" id="colombian_phone" formControlName="colombian_phone"
+                    placeholder="Telefono en Colombia" required class="form-control form-control-lg" />
+                <div *ngIf="form.controls['colombian_phone'].invalid && isSubmited" class="input-feedback">
+                    <label *ngIf="form.controls['colombian_phone'].errors?.['required']">
+                        Dato requerido.
+                    </label>
+                </div>
+            </div>
+            <div class="col-4">
+                <label for="other_phone">Otro teléfono</label>
+                <input type="text" name="other_phone" id="other_phone" formControlName="other_phone"
+                    placeholder="Otro teléfono" required class="form-control form-control-lg" />
+                <div *ngIf="form.controls['other_phone'].invalid && isSubmited" class="input-feedback">
+                    <label *ngIf="form.controls['other_phone'].errors?.['required']">
+                        Dato requerido.
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 buttons spacer">
+            <button class="btn btn-primary mb-3 float-end principal_blue" type="submit">Siguiente</button>
+            <ng-container *ngIf="isNew+'' === '0'">
+                <button class="btn btn-primary mb-3 float-end principal_white" type="button"
+                    (click)="back()">Atrás</button>
+            </ng-container>
+        </div>
+    </form>
+</div>

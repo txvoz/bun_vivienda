@@ -1,0 +1,43 @@
+<div class="row custom-credit-application-container spacer">
+    <form [formGroup]="form" (ngSubmit)="submit()">
+        <div class="row filter-content">
+            <div class="col-3 radio-order">
+                <label for="request_number">Número de solicitud</label> <br>
+                <input type="number" name="request_number" id="request_number" formControlName="request_number"
+                    (change)="inputChange('request_number')" placeholder="Buscar por número de solicitud"
+                    class="form-control form-control-lg" />
+            </div>
+            <div class="col-2 radio-order">
+                <label for="from_date">Fecha desde</label> <br>
+                <input type="date" name="from_date" id="from_date" formControlName="from_date"
+                    (change)="inputChange('from_date')" class="form-control form-control-lg" />
+            </div>
+            <div class="col-2 radio-order">
+                <label for="to_date">Fecha hasta</label> <br>
+                <input type="date" name="to_date" id="to_date" formControlName="to_date"
+                    (change)="inputChange('to_date')" class="form-control form-control-lg" />
+            </div>
+            <div class="col-2 radio-order">
+                <label for="request_status">Estado de la solicitud</label> <br>
+                <input type="text" name="request_status" id="request_status" formControlName="request_status"
+                    (change)="inputChange('request_status')" placeholder="Estado de la solicitud"
+                    class="form-control form-control-lg" />
+            </div>
+            <div class="col-3 radio-order">
+                <label for="doc_number">Número de identificación</label> <br>
+                <input type="text" name="doc_number" id="doc_number" formControlName="doc_number"
+                    (change)="inputChange('doc_number')" placeholder="Buscar por número de identificación"
+                    class="form-control form-control-lg" />
+            </div>
+            <br>
+
+        </div>
+        <div class="col-12 container-fluid h-custom ">
+            <button class="btn btn-primary mb-3 float-end principal_blue" style="width: 250px; margin-left: 10px;"
+                type="submit" [disabled]="!isValidFilters()" >Buscar</button>
+            <button class="btn btn-primary mb-3 float-end principal_white" style="width: 220px;" type="button"
+                (click)="clear()"
+                [disabled]="!isValidFilters()">Borrar filtros</button>
+        </div>
+    </form>
+</div>

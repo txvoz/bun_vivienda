@@ -1,0 +1,122 @@
+<div class="row custom-credit-application-container spacer">
+    <form [formGroup]="form" (ngSubmit)="submit()">
+        <div class="col-12">
+            <h2 class="bun_blue">Ingresa los datos del inmueble</h2>
+        </div>
+        <div class="col-12 spacer">
+            <div class="row">
+                <div class="col-6">
+                    <!---->
+                    <div class="row cont-main">
+                        <label><b>Modalidad</b></label>
+                        <br>
+                        <div class="cont-checkbox col-6" *ngFor="let item of propertyTypeItems; index as i">
+                            <input type="radio" name="type_credit" formControlName="type_credit"
+                                [id]="'type_credit_' + i" [value]="item.idValueDomain" />
+                            <label [for]="'type_credit_' + i">
+                                <div class="icon icon-{{ item.name?.toLowerCase() }}"></div>
+                                <div class="info">{{ item.name }}</div>
+                            </label>
+                        </div>
+                        <div *ngIf="form.controls['type_credit'].invalid && isSubmited" class="input-feedback">
+                            <label *ngIf="form.controls['type_credit'].errors?.['required']">
+                                Dato requerido.
+                            </label>
+                        </div>
+                    </div>
+                    <!---->
+                </div>
+            </div>
+        </div>
+        <div class="col-12 spacer">
+            <div class="row">
+                <div class="col-3 radio-order">
+                    <label><b>Compra de inmueble </b></label> <br>
+                    <input type="radio" value="1" name="type_purchase" id="type_purchase_1"
+                        formControlName="type_purchase" /> <label for="type_purchase_1">Nuevo</label>
+                    <input type="radio" value="2" name="type_purchase" id="type_purchase_2"
+                        formControlName="type_purchase" /> <label for="type_purchase_2">Usado</label>
+                    <div *ngIf="form.controls['type_purchase'].invalid && isSubmited" class="input-feedback">
+                        <label *ngIf="form.controls['type_purchase'].errors?.['required']">
+                            Dato requerido.
+                        </label>
+                    </div>
+                </div>
+                <div class="col-3 radio-order">
+                    <label><b>Destino del inmueble </b></label> <br>
+                    <input type="radio" value="1" name="type_use" id="type_use_1" formControlName="type_use" /> <label
+                        for="type_use_1">Vivienda</label>
+                    <input type="radio" value="2" name="type_use" id="type_use_2" formControlName="type_use" /> <label
+                        for="type_use_2">Arriendo</label>
+                    <div *ngIf="form.controls['type_use'].invalid && isSubmited" class="input-feedback">
+                        <label *ngIf="form.controls['type_use'].errors?.['required']">
+                            Dato requerido.
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 spacer">
+            <div class="row">
+                <div class="col-6">
+                    <label for="comercial_value">Valor comercial</label>
+                    <input type="number" name="comercial_value" id="comercial_value" formControlName="comercial_value"
+                        placeholder="Ingrese el valor" required class="form-control form-control-lg" />
+                    <div *ngIf="form.controls['comercial_value'].invalid && isSubmited" class="input-feedback">
+                        <label *ngIf="form.controls['comercial_value'].errors?.['required']">
+                            Dato requerido.
+                        </label>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <label for="city_of">Ciudad donde se encuentra ubicado el inmueble</label>
+                    <select id="city_of" formControlName="city_of" name="city_of"
+                        class="form-control form-control-lg">
+                        <option value="" selected>Seleccione ciudad</option>
+                        <option *ngFor="let city of citiesItems" [ngValue]="city.idValueDomain">
+                            {{city.name}}
+                        </option>
+                    </select>
+                    
+                    <div *ngIf="form.controls['city_of'].invalid && isSubmited" class="input-feedback">
+                        <label *ngIf="form.controls['city_of'].errors?.['required']">
+                            Dato requerido.
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 spacer">
+            <div class="row">
+                <div class="col-6">
+                    <label for="address">Dirección de ubicación del imueble</label>
+                    <input type="address" name="address" id="address" formControlName="address"
+                        placeholder="Dirección del inmueble" required class="form-control form-control-lg" />
+                    <div *ngIf="form.controls['address'].invalid && isSubmited" class="input-feedback">
+                        <label *ngIf="form.controls['address'].errors?.['required']">
+                            Dato requerido.
+                        </label>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <label for="date">Fecha de entrega</label>
+                    <input type="date" name="date" id="date" formControlName="date" required
+                        class="form-control form-control-lg" />
+                    <div *ngIf="form.controls['date'].invalid && isSubmited" class="input-feedback">
+                        <label *ngIf="form.controls['date'].errors?.['required']">
+                            Dato requerido.
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 spacer">
+            <input type="checkbox" id="has_mortgage" formControlName="has_mortgage" name="has_mortgage" /><label
+                class="label-16 margin-left-5px">Selecciona esta casilla si el inmueble tiene hipoteca</label>
+        </div>
+        <div class="col-12 buttons spacer">
+            <button class="btn btn-primary mb-3 float-end principal_blue" type="submit">Siguiente</button>
+            <button class="btn btn-primary mb-3 float-end principal_white" type="button" (click)="back()">Atrás</button>
+        </div>
+    </form>
+</div>

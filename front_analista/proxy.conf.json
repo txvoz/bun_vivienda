@@ -1,0 +1,13 @@
+{
+    "/mocks": {
+        "target": "http://localhost:8081",
+        "secure": false,
+        "logLevel": "debug"
+    }, 
+    "/SrvIntHomeCreditDigital": {
+        "target": "http://10.122.7.10:8080",
+        "secure": true,
+        "logLevel": "debug",
+        "changeOrigin": true
+    }
+}

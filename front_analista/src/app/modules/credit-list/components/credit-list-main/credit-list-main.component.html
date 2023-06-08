@@ -1,0 +1,21 @@
+<div class="jumbotron">
+    <app-navbar></app-navbar>
+    <div class="container">
+        <ng-container>
+            <app-credit-list-filters
+            (setFiltersToMain)="setFiltersToMain($event)"
+            ></app-credit-list-filters>
+        </ng-container>
+    </div>
+</div>
+
+<ng-container>
+    <app-credit-list-table
+    [datasource]=datasource
+    (setPagToMain)="setPagToMain($event)"
+    ></app-credit-list-table>
+</ng-container>
+
+<div class="jumbotron">
+    <app-footer></app-footer>
+</div>

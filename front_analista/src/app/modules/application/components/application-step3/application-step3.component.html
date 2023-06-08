@@ -1,0 +1,343 @@
+<div class="row custom-credit-application-container spacer">
+    <form [formGroup]="form" (ngSubmit)="submit()">
+        <div class="col-12">
+            <h2 class="bun_blue">Ingresa los datos de <br> información económica</h2>
+        </div>
+        <div class="row spacer">
+            <div class="col-12 spacer">
+                <h4 class="bun_blue">Ocupación</h4>
+            </div>
+        </div>
+        <div class="row spacer">
+            <div class="col-4">
+                <label for="ocupation">Ocupación/Profesión</label>
+
+                <select id="ocupation" formControlName="ocupation" name="ocupation"
+                    class="form-control form-control-lg">
+                    <option value="" selected>Seleccione ocupación</option>
+                    <option *ngFor="let item of ocupationsItems" [ngValue]="item.idValueDomain">
+                        {{item.name}}
+                    </option>
+                </select>
+
+                <div *ngIf="form.controls['ocupation'].invalid && isSubmited" class="input-feedback">
+                    <label *ngIf="form.controls['ocupation'].errors?.['required']">
+                        Dato requerido.
+                    </label>
+                </div>
+            </div>
+            <div class="col-4">
+                <label for="enterprice_name">Nombre de la empresa</label>
+                <input type="text" name="enterprice_name" id="enterprice_name" formControlName="enterprice_name"
+                    placeholder="Nombre de la empresa" required class="form-control form-control-lg" />
+                <div *ngIf="form.controls['enterprice_name'].invalid && isSubmited" class="input-feedback">
+                    <label *ngIf="form.controls['enterprice_name'].errors?.['required']">
+                        Dato requerido.
+                    </label>
+                </div>
+            </div>
+            <div class="col-4">
+                <label for="enterprice_address">Dirección de la empresa</label>
+                <input type="text" name="enterprice_address" id="enterprice_address"
+                    formControlName="enterprice_address" placeholder="Dirección de la empresa" required
+                    class="form-control form-control-lg" />
+                <div *ngIf="form.controls['enterprice_address'].invalid && isSubmited" class="input-feedback">
+                    <label *ngIf="form.controls['enterprice_address'].errors?.['required']">
+                        Dato requerido.
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="row spacer">
+            <div class="col-4">
+                <label for="enterprice_activity">Actividad de la empresa</label>
+                <input type="text" name="enterprice_activity" id="enterprice_activity"
+                    formControlName="enterprice_activity" placeholder="Actividad de la empresa" required
+                    class="form-control form-control-lg" />
+                <div *ngIf="form.controls['enterprice_activity'].invalid && isSubmited" class="input-feedback">
+                    <label *ngIf="form.controls['enterprice_activity'].errors?.['required']">
+                        Dato requerido.
+                    </label>
+                </div>
+            </div>
+            <div class="col-4">
+                <label for="enterprice_phone">Teléfono de la empresa</label>
+                <input type="text" name="enterprice_phone" id="enterprice_phone" formControlName="enterprice_phone"
+                    placeholder="Teléfono de la empresa" required class="form-control form-control-lg" />
+                <div *ngIf="form.controls['enterprice_phone'].invalid && isSubmited" class="input-feedback">
+                    <label *ngIf="form.controls['enterprice_phone'].errors?.['required']">
+                        Dato requerido.
+                    </label>
+                </div>
+            </div>
+            <div class="col-4">
+                <label for="enterprice_position">Cargo que ocupa</label>
+                <input type="text" name="enterprice_position" id="enterprice_position"
+                    formControlName="enterprice_position" placeholder="Cargo que ocupa" required
+                    class="form-control form-control-lg" />
+                <div *ngIf="form.controls['enterprice_position'].invalid && isSubmited" class="input-feedback">
+                    <label *ngIf="form.controls['enterprice_position'].errors?.['required']">
+                        Dato requerido.
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="row spacer">
+            <div class="col-4">
+                <label for="contract_type">Tipo de contrato</label>
+
+                <select id="contract_type" formControlName="contract_type" name="contract_type"
+                    class="form-control form-control-lg">
+                    <option value="" selected>Seleccione tipo de contrato</option>
+                    <option *ngFor="let item of contractTypeItems" [ngValue]="item.idValueDomain">
+                        {{item.name}}
+                    </option>
+                </select>
+
+                <div *ngIf="form.controls['contract_type'].invalid && isSubmited" class="input-feedback">
+                    <label *ngIf="form.controls['contract_type'].errors?.['required']">
+                        Dato requerido.
+                    </label>
+                </div>
+            </div>
+            <div class="col-4">
+                <label for="work_time">Horario de trabajo</label>
+                <input type="text" name="work_time" id="work_time" formControlName="work_time"
+                    placeholder="Horario de trabajo" required class="form-control form-control-lg" />
+                <div *ngIf="form.controls['work_time'].invalid && isSubmited" class="input-feedback">
+                    <label *ngIf="form.controls['work_time'].errors?.['required']">
+                        Dato requerido.
+                    </label>
+                </div>
+            </div>
+            <div class="col-4">
+                <label for="time_at_enterprice">Antigüedad en la empresa</label>
+
+                <select id="time_at_enterprice" formControlName="time_at_enterprice" name="time_at_enterprice"
+                    class="form-control form-control-lg">
+                    <option value="" selected>Seleccione antigüedad</option>
+                    <option *ngFor="let item of antiquityItems" [ngValue]="item.idValueDomain">
+                        {{item.name}}
+                    </option>
+                </select>
+
+                <div *ngIf="form.controls['time_at_enterprice'].invalid && isSubmited" class="input-feedback">
+                    <label *ngIf="form.controls['time_at_enterprice'].errors?.['required']">
+                        Dato requerido.
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="row spacer">
+            <div class="col-4 radio-order">
+                <label><b>¿Es persona reconocida públicamente o maneja recursos públicos? </b></label> <br>
+                <input type="radio" value="1" name="prp" id="prp_1" formControlName="prp" /> <label
+                    for="prp_1">Si</label>
+                <input type="radio" value="2" name="prp" id="prp_2" formControlName="prp" /> <label
+                    for="prp_2">No</label>
+                <div *ngIf="form.controls['prp'].invalid && isSubmited" class="input-feedback">
+                    <label *ngIf="form.controls['prp'].errors?.['required']">
+                        Dato requerido.
+                    </label>
+                </div>
+            </div>
+            <div class="col-6 radio-order">
+                <label><b>¿Ha sido victima de hechos violentos en Colombia?</b> <br> (Debe contar con un certificado de
+                    víctima de hechos violentos) </label> <br>
+                <input type="radio" value="1" name="vhc" id="vhc_1" formControlName="vhc" /> <label
+                    for="vhc_1">Si</label>
+                <input type="radio" value="2" name="vhc" id="vhc_2" formControlName="vhc" /> <label
+                    for="vhc_2">No</label>
+                <div *ngIf="form.controls['vhc'].invalid && isSubmited" class="input-feedback">
+                    <label *ngIf="form.controls['vhc'].errors?.['required']">
+                        Dato requerido.
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="row spacer">
+            <div class="col-12 spacer">
+                <h4 class="bun_blue">Transacciones en moneda extranjera</h4>
+            </div>
+        </div>
+        <div class="row spacer">
+            <div class="col-4 radio-order">
+                <label><b>¿Realiza transacciones en moneda extranjera? </b></label> <br>
+
+                <input type="radio" value="1" name="tme" id="tme_1" formControlName="tme" /> <label
+                    for="tme_1">Si</label>
+                
+                <input type="radio" value="2" name="tme" id="tme_2" formControlName="tme" /> <label
+                    for="tme_2">No</label>
+                
+                <div *ngIf="form.controls['tme'].invalid && isSubmited" class="input-feedback">
+                    <label *ngIf="form.controls['tme'].errors?.['required']">
+                        Dato requerido.
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <ng-container *ngIf="form.controls['tme'].value === '1'">
+            <div class="row spacer">
+                <div class="col-4">
+                    <label for="bank_name">Entidad bancaria</label>
+                    <input type="text" name="bank_name" id="bank_name" formControlName="bank_name"
+                        placeholder="Entidad bancaria" required class="form-control form-control-lg" />
+                    <div *ngIf="form.controls['bank_name'].invalid && isSubmited" class="input-feedback">
+                        <label *ngIf="form.controls['bank_name'].errors?.['required']">
+                            Dato requerido.
+                        </label>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <label for="account_number">Número de cuenta</label>
+                    <input type="text" name="account_number" id="account_number" formControlName="account_number"
+                        placeholder="Número de cuenta" required class="form-control form-control-lg" />
+                    <div *ngIf="form.controls['account_number'].invalid && isSubmited" class="input-feedback">
+                        <label *ngIf="form.controls['account_number'].errors?.['required']">
+                            Dato requerido.
+                        </label>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <label for="type_money">Moneda</label>
+                    <input type="text" name="type_money" id="type_money" formControlName="type_money"
+                        placeholder="Moneda" required class="form-control form-control-lg" />
+                    <div *ngIf="form.controls['type_money'].invalid && isSubmited" class="input-feedback">
+                        <label *ngIf="form.controls['type_money'].errors?.['required']">
+                            Dato requerido.
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row spacer">
+                <div class="col-4">
+                    <label for="operation_country">País</label>
+
+                    <select id="operation_country" formControlName="operation_country" name="operation_country"
+                        class="form-control form-control-lg">
+                        <option value="" selected>Seleccione país</option>
+                        <option *ngFor="let item of countriesItems" [ngValue]="item.idValueDomain">
+                            {{item.description}}
+                        </option>
+                    </select>
+
+                    <div *ngIf="form.controls['operation_country'].invalid && isSubmited" class="input-feedback">
+                        <label *ngIf="form.controls['operation_country'].errors?.['required']">
+                            Dato requerido.
+                        </label>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <label for="operation_city">Ciudad</label>
+
+                    <select id="operation_city" formControlName="operation_city" name="operation_city"
+                        class="form-control form-control-lg">
+                        <option value="" selected>Seleccione ciudad</option>
+                        <option *ngFor="let item of citiesItems" [ngValue]="item.idValueDomain">
+                            {{item.name}}
+                        </option>
+                    </select>
+
+                    <div *ngIf="form.controls['operation_city'].invalid && isSubmited" class="input-feedback">
+                        <label *ngIf="form.controls['operation_city'].errors?.['required']">
+                            Dato requerido.
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+
+        <div class="row spacer">
+            <div class="col-12 spacer">
+                <h4 class="bun_blue">Operaciones internacionales</h4>
+            </div>
+        </div>
+        <div class="row spacer">
+            <div class="col-4 radio-order">
+                <label><b>¿Realiza operaciones interacionales? </b></label> <br>
+                <input type="radio" value="1" name="opi" id="opi_1" formControlName="opi" /> <label
+                    for="opi_1">Si</label>
+                <input type="radio" value="2" name="opi" id="opi_2" formControlName="opi" /> <label
+                    for="opi_2">No</label>
+                <div *ngIf="form.controls['opi'].invalid && isSubmited" class="input-feedback">
+                    <label *ngIf="form.controls['opi'].errors?.['required']">
+                        Dato requerido.
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <ng-container *ngIf="form.controls['opi'].value+'' === '1'">
+            <div class="row spacer">
+                <div class="col-4">
+                    <label for="operation_type">Tipo de operación</label>
+                    
+                    <select id="operation_type" formControlName="operation_type" name="operation_type"
+                        class="form-control form-control-lg">
+                        <option value="" selected>Seleccione tipo de operacion</option>
+                        <option *ngFor="let item of operationTypeItems" [ngValue]="item.idValueDomain">
+                            {{item.name}}
+                        </option>
+                    </select>
+                    
+                    <div *ngIf="form.controls['operation_type'].invalid && isSubmited" class="input-feedback">
+                        <label *ngIf="form.controls['operation_type'].errors?.['required']">
+                            Dato requerido.
+                        </label>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <label for="other_type">Otro (Cuál)</label>
+                    <input type="text" name="other_type" id="other_type" formControlName="other_type" placeholder="Otro"
+                        required class="form-control form-control-lg" />
+                    <div *ngIf="form.controls['other_type'].invalid && isSubmited" class="input-feedback">
+                        <label *ngIf="form.controls['other_type'].errors?.['required']">
+                            Dato requerido.
+                        </label>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <label for="product_identity">Identificación de producto</label>
+                    <input type="text" name="product_identity" id="product_identity" formControlName="product_identity"
+                        placeholder="Identificación de producto" required class="form-control form-control-lg" />
+                    <div *ngIf="form.controls['product_identity'].invalid && isSubmited" class="input-feedback">
+                        <label *ngIf="form.controls['product_identity'].errors?.['required']">
+                            Dato requerido.
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row spacer">
+                <div class="col-4">
+                    <label for="ttype_product">Tipo de producto</label>
+                    <input type="text" name="ttype_product" id="ttype_product" formControlName="ttype_product"
+                        placeholder="Tipo de producto" required class="form-control form-control-lg" />
+                    <div *ngIf="form.controls['ttype_product'].invalid && isSubmited" class="input-feedback">
+                        <label *ngIf="form.controls['ttype_product'].errors?.['required']">
+                            Dato requerido.
+                        </label>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <label for="average_amount">Monto promedio mensual</label>
+                    <input type="number" name="average_amount" id="average_amount" formControlName="average_amount"
+                        placeholder="Monto promedio mensual" required class="form-control form-control-lg" />
+                    <div *ngIf="form.controls['average_amount'].invalid && isSubmited" class="input-feedback">
+                        <label *ngIf="form.controls['average_amount'].errors?.['required']">
+                            Dato requerido.
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+
+        <div class="col-12 buttons spacer">
+            <button class="btn btn-primary mb-3 float-end principal_blue" type="submit">Siguiente</button>
+            <button class="btn btn-primary mb-3 float-end principal_white" type="button" (click)="back()">Atrás</button>
+        </div>
+
+    </form>
+</div>

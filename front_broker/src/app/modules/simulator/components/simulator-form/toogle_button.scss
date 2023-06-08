@@ -1,0 +1,147 @@
+* {
+    font-family: Lato;
+    --transition: 0.15s;
+    --border-radius: 0.5rem;
+    --background: #15A4E0;
+    --box-shadow: #15A4E0;
+}
+
+
+.cont-main {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+}
+
+.cont-checkbox {
+
+    &:active {
+        transform: scale(0.9);
+    }
+
+    input {
+        display: none;
+
+        &:checked+label {
+
+            color: #fff;
+            //box-shadow: 0 0 0 3px var(--background);
+            background-color: var(--background);
+        }
+
+    }
+
+    label {
+
+        &:active {
+            transform: scale(0.9);
+        }
+
+        border-radius: var(--border-radius);
+        box-shadow: 0px 4.60177px 9.20354px rgba(80, 95, 108, 0.15);
+        transition: transform var(--transition);
+        background: white;
+        padding: 15px;
+
+        cursor: pointer;
+        border-radius: var(--border-radius);
+        overflow: hidden;
+        width: 100%;
+        position: relative;
+
+        .icon {
+            min-width: 35px;
+            min-height: 35px;
+            display: inline-block;
+            background-size: 100%;
+            background-repeat: no-repeat;
+        }
+
+        .info {
+            text-align: center;
+            font-weight: 600;
+            font-size: 18px;
+            display: inline;
+            margin-left: 10px;
+            align-items: center;
+            vertical-align: middle;
+            position: relative;
+            vertical-align: top;
+            top: 5px;
+        }
+    }
+}
+
+.cont-checkbox label:hover {
+    background-color: #e2edfd;
+}
+
+.cont-checkbox {
+    .icon-credit {
+        background-image: url('../../../../../../src/assets/toggle_buttons/key-active.png');
+    }
+
+    .icon-leasing {
+        background-image: url('../../../../../../src/assets/toggle_buttons/leasing-active.png');
+    }
+
+    .icon-department,.icon-apartamento {
+        background-image: url('../../../../../../src/assets/toggle_buttons/department-active.png');
+    }
+
+    .icon-house,.icon-casa {
+        background-image: url('../../../../../../src/assets/toggle_buttons/house-active.png');
+    }
+
+    .icon-personal {
+        background-image: url('../../../../../../src/assets/toggle_buttons/personal-active.png');
+    }
+
+    .icon-personal-add {
+        background-image: url('../../../../../../src/assets/toggle_buttons/personal-add-active.png');
+    }
+
+    .icon-familiar {
+        background-image: url('../../../../../../src/assets/toggle_buttons/familiar-active.png');
+    }
+
+    input {
+        &:checked+label {
+
+            .icon-credit {
+                background-image: url('../../../../../../src/assets/toggle_buttons/key.png');
+            }
+        
+            .icon-leasing {
+                background-image: url('../../../../../../src/assets/toggle_buttons/leasing.png');
+            }
+
+            .icon-department,.icon-apartamento {
+                background-image: url('../../../../../../src/assets/toggle_buttons/department.png');
+            }
+
+            .icon-house,.icon-casa {
+                background-image: url('../../../../../../src/assets/toggle_buttons/house.png');
+            }
+
+            .icon-personal {
+                background-image: url('../../../../../../src/assets/toggle_buttons/personal.png');
+            }
+
+            .icon-personal-add {
+                background-image: url('../../../../../../src/assets/toggle_buttons/personal-add.png');
+            }
+        
+            .icon-familiar {
+                background-image: url('../../../../../../src/assets/toggle_buttons/familiar.png');
+            }
+            
+        }
+    }
+
+}
+
+
+
+//https://stackblitz.com/edit/angular-base-simple-scss-hf9hrp?file=src%2Fapp%2Fapp.component.ts

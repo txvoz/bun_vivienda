@@ -1,0 +1,10 @@
+<ng-container *ngIf="data.display+'' == 'true'">
+    <div [className]="'chip-message ' + data.type">
+        <div class="close" (click)="close()">X</div>
+        <div [className]="'icon ' + data.icon"></div>
+        <div class="message">
+            <div class="title">{{data.title}}</div>
+            <p>{{data.message}}</p>
+        </div>
+    </div>
+</ng-container>

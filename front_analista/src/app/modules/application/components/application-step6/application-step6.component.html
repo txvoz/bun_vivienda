@@ -1,0 +1,50 @@
+<div class="row custom-credit-application-container spacer">
+    <form [formGroup]="form" (ngSubmit)="submit()">
+        <div class="col-12">
+            <h2 class="bun_blue">Adjuntar documentos</h2>
+        </div>
+        <div class="col-12 spacer">
+            <div class="row">
+                <div class="col-3 m-0 justify-content-center align-items-center">
+                    <label>Documento de radicación</label>
+                    <div class="file-content upload text-center justify-content-center align-items-center">
+                        <div class="icon"></div>
+                        <br>
+                        <label>Documento para <br> radicación</label>
+                        <button class="btn btn-primary principal_white btn_small">Subir archivo</button>
+                    </div>
+                </div>
+                <div class="col-3 m-0 justify-content-center align-items-center">
+                    <label>Formato seguro de vida</label>
+                    <div class="file-content uploaded col-auto justify-content-center align-items-center text-center">
+                        <div class="icon"></div>
+                        <br>
+                        <label>Documento_seguro de vida_firmado.pdf</label>
+                        <button class="btn btn-primary principal_white_without_borders btn_small">Reemplazar
+                            archivo</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row spacer">
+                <div class="col-4 radio-order">
+                    <label><b>¿Participa otra persona en el crédito?</b></label> <br>
+                    <input type="radio" value="1" name="other_customer" id="other_customer_1" formControlName="other_customer" /> <label for="other_customer_1">Si</label>
+                    <input type="radio" value="2" name="other_customer" id="other_customer_2" formControlName="other_customer" /> <label for="other_customer_2">No</label>
+                    <div *ngIf="form.controls['other_customer'].invalid && isSubmited" class="input-feedback">
+                        <label *ngIf="form.controls['other_customer'].errors?.['required']">
+                            Dato requerido.
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row spacer">
+                <div class="col-12 buttons spacer">
+                    <button class="btn btn-primary mb-3 float-end principal_blue" type="submit">Siguiente</button>
+                    <button class="btn btn-primary mb-3 float-end principal_white" type="button" (click)="back()">Atrás</button>
+                </div>
+            </div>
+
+        </div>
+
+    </form>
+</div>

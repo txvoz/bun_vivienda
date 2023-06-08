@@ -1,0 +1,67 @@
+div.mask {
+    top: 0;
+    left: 0;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+div.mask section.content {
+    position: relative;
+    width: 650px;
+    min-height: 250px;
+    border-radius: 13px;
+    background-color: white;
+    padding: 0px 50px;
+    padding-bottom: 30px;
+}
+
+div.mask section.content .close {
+    position: absolute;
+    font-weight: bold;
+    top: 5px;
+    right: 10px;
+    cursor: pointer;
+    color: #5D5D5D;
+}
+
+
+div.mask section.content .title {
+    font-size: 24px;
+    margin-top: 30px;
+    font-weight: bold;
+    text-align: center;
+    color: #15A4E0;
+}
+
+
+div.mask section.content .message {
+    margin: 20px;
+    font-size: 16px;
+    text-align: center;
+}
+
+div.mask section.content .sub_message {
+    margin: 20px;
+    font-size: 16px;
+    text-align: center;
+    color: #15A4E0;
+}
+
+div.mask section.content .code {
+    font-weight: bold;
+    margin: 20px;
+    font-size: 24px;
+    text-align: center;
+    color: #000;
+}
+
+div.mask section.content button {
+    width: 200px;
+    margin: 0 auto;
+}

@@ -1,0 +1,71 @@
+<section class="vh-100 overflow-hidden" style="background-color: #EEEEEE;">
+
+    <div class="row vh-100 overflow-hidden">
+
+        <div class="col-md-6 col-lg-6 col-xl-6 vh-100 justify-content-center">
+
+            <div class="row vh-100 justify-content-center align-items-center">
+
+                <section class="container-fluid h-custom mt-5 custom-login-container">
+                    <form #form="ngForm" (ngSubmit)="onSubmit($event)">
+                        <div class="row justify-content-center align-items-center">
+                            <div class="col-auto justify-content-center align-items-center text-center">
+                                <header>
+                                    <div class="logo_login"></div>
+                                </header>
+                            </div>
+                            <div class="col-12">
+                                <h2 class="bun_blue">Solicitud de crédito <br /> de vivienda</h2>
+                                <p>Ingresa tu correo electrónico para comenzar con el proceso de solicitud.</p>
+                            </div>
+                            <div class="col-12">
+                                <label for="email">Correo electrónico</label>
+                                <input type="email" name="email" id="email" #xemail="ngModel"
+                                    placeholder="Ingresa tu correo para iniciar sesión" [(ngModel)]="yemail" [email]="true" required
+                                    class="form-control form-control-lg" />
+
+                                <div *ngIf="xemail.invalid && (xemail.dirty || xemail.touched)"
+                                    class="input-feedback">
+                                    <label *ngIf="xemail.errors?.['required']">
+                                       Email requerido.
+                                    </label>
+                                    <label *ngIf="xemail.errors?.['email']">
+                                        Formato del email incorrecto.
+                                     </label>
+                                </div>
+                            </div>
+                            <div class="col-12 buttons ">
+                                <button class="btn btn-primary mb-3 float-end principal_blue"
+                                    [disabled]="!captchaResolved || form.invalid" type="submit">Validar correo</button>
+                            </div>
+                            <div class="col-12 buttons">
+                                <div class="float-end">
+                                    <re-captcha id="recaptcha" name="recaptcha" #recaptcha="ngModel" [(ngModel)]="token"
+                                        required
+                                        [class.is-invalid]="recaptcha.invalid && (recaptcha.dirty || recaptcha.touched)"
+                                        (resolved)="checkCaptcha($event)"></re-captcha>
+                                    <div *ngIf="recaptcha.invalid && (recaptcha.dirty || recaptcha.touched)"
+                                        class="invalid-feedback">
+                                        <div *ngIf="recaptcha.errors?.['required']">Este campo es requerido.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </section>
+            </div>
+
+        </div>
+        <div class="col-md-6 col-lg-6 col-xl-6 vh-100">
+            <section class="vh-100 splash_image"></section>
+        </div>
+
+    </div>
+
+</section>
+
+<!--<app-loader></app-loader>-->
+
+<!--
+https://dev.to/rodrigokamada/adding-the-google-recaptcha-v2-to-an-angular-application-1o7o
+-->

@@ -1,0 +1,15 @@
+footer.principal {
+    position: fixed;
+    width: 100%;
+    height: 30px;
+    bottom: 0px;
+    color: #297f97;
+    background-color: #8BD3E6;
+    z-index: 30000000;
+}
+
+.footer-spacer {
+    position: relative;
+    width: 100%;
+    height: 150px;
+}

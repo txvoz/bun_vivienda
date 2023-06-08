@@ -1,0 +1,642 @@
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600&display=swap" rel="stylesheet">
+<script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
+
+<div class="row custom-credit-application-container spacer">
+    <form [formGroup]="form" (ngSubmit)="submit()">
+        <div class="col-12">
+            <h2 class="bun_blue">Ingresa los datos de los <br>activos y pasivos</h2>
+        </div>
+        <div class="row spacer">
+            <div class="col-12 spacer flexbox-container">
+                <div class="title_icon prestamos"></div>
+                <h4 class="bun_blue">Prestamos</h4>
+            </div>
+        </div>
+        <div class="row spacer">
+            <div class="col-4 radio-order">
+                <label><b>¿Cuenta con prestamos?</b></label> <br>
+
+                <input type="radio" value="1" name="have_loans" id="have_loans_1" formControlName="have_loans"
+                    (click)="addLoan()" />
+                <label for="have_loans_1" (click)="addLoan()">Si</label>
+
+                <input type="radio" value="2" name="have_loans" id="have_loans_2" formControlName="have_loans"
+                    (click)="removeLoans()" />
+                <label for="have_loans_2" (click)="removeLoans()">No</label>
+
+                <div *ngIf="form.controls['have_loans'].invalid && isSubmited" class="input-feedback">
+                    <label *ngIf="form.controls['have_loans'].errors?.['required']">
+                        Dato requerido.
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <ng-container *ngIf="form.controls['have_loans'].value+'' === '1'">
+
+            <div formArrayName="loans">
+                <div class="row spacer" *ngFor="let item of frmLoans.controls; let i = index" [formGroupName]="i">
+                    <div class="col-4">
+                        <label [for]="'loans_entity' + i">Entidad financiera</label>
+                        <input type="text" name="loans_entity" formControlName="loans_entity" [id]="'loans_entity' + i"
+                            placeholder="Ingresa el nombre de la entidad financiera"
+                            class="form-control form-control-lg" />
+
+                        <div *ngIf="validate(item,'loans_entity').invalid && isSubmited" class="input-feedback">
+                            <label *ngIf="validate(item,'loans_entity').errors?.['required']">
+                                Dato requerido.
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="col-4">
+                        <label [for]="'loans_value' + i">Saldo actual</label> <br>
+                        <input type="number" name="loans_value" formControlName="loans_value" [id]="'loans_value' + i"
+                            placeholder="Saldo actual" class="form-control form-control-lg without-border-rigth" />
+
+                        <div class="contenedor without-border-left">
+                            <div class="toselectbox" [id]="'currency' + i">
+                                <div class="select">
+                                    <div class="contenido-select">
+                                        <label class="titulo">Moneda</label>
+                                    </div>
+                                    <i class="fas fa-angle-down"></i>
+                                </div>
+                                <div class="opciones">
+                                    <a href="#" class="opcion" [id]="'loans'+i+'_'+currency.code" *ngFor="let currency of currencies"
+                                        (click)="selected(item,currency.code)">
+                                        <div class="contenido-opcion">
+                                            <img [src]="'assets/country/'+ currency.code +'.png'" alt="">
+                                            <div class="textos">
+                                                <label class="titulo">{{currency.code}}</label>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <input type="hidden" class="inputSelect" name="currency_value"
+                                    formControlName="currency_value" [id]="'currency_value' + i" />
+                            </div>
+                        </div>
+
+                        <div *ngIf="(validate(item,'loans_value').invalid || validate(item,'currency_value').invalid) && isSubmited"
+                            class="input-feedback">
+                            <label
+                                *ngIf="validate(item,'loans_entity').errors?.['required'] || validate(item,'currency_value').errors?.['required']">
+                                Dato requerido.
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 buttons spacer">
+                <button class="btn btn-primary mb-3 principal_white" type="button" (click)="addLoan()">+ Agregar otro
+                    préstamo</button>
+            </div>
+        </ng-container>
+
+
+        <div class="row spacer">
+            <div class="col-12 spacer flexbox-container">
+                <div class="title_icon tarjetas"></div>
+                <h4 class="bun_blue">Tarjeta de crédito</h4>
+            </div>
+        </div>
+        <div class="row spacer">
+            <div class="col-4 radio-order">
+                <label><b>¿Tienes tarjetas de crédito?</b></label> <br>
+                <input type="radio" value="1" name="have_tc" id="have_tc_1" formControlName="have_tc"
+                    (click)="addTc()" />
+                <label for="have_tc_1" (click)="addTc()">Si</label>
+                <input type="radio" value="2" name="have_tc" id="have_tc_2" formControlName="have_tc"
+                    (click)="removeTc()" />
+                <label for="have_tc_2" (click)="removeTc()">No</label>
+                <div *ngIf="form.controls['have_tc'].invalid && isSubmited" class="input-feedback">
+                    <label *ngIf="form.controls['have_tc'].errors?.['required']">
+                        Dato requerido.
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <ng-container *ngIf="form.controls['have_tc'].value+'' === '1'">
+            <div formArrayName="tcs">
+                <div class="row spacer" *ngFor="let item of frmTcs.controls; let i = index" [formGroupName]="i">
+                    <div class="col-4">
+                        <label [for]="'tc_entity' + i">Entidad financiera</label>
+                        <input type="text" name="tc_entity" formControlName="tc_entity" [id]="'tc_entity' + i"
+                            placeholder="Ingresa el nombre de la entidad financiera"
+                            class="form-control form-control-lg" />
+
+                        <div *ngIf="validate(item,'tc_entity').invalid && isSubmited" class="input-feedback">
+                            <label *ngIf="validate(item,'tc_entity').errors?.['required']">
+                                Dato requerido.
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <label [for]="'tc_value' + i">Saldo actual</label> <br>
+                        <input type="number" name="tc_value" formControlName="tc_value" [id]="'tc_value' + i"
+                            placeholder="Saldo actual" class="form-control form-control-lg without-border-rigth" />
+
+                        <div class="contenedor without-border-left">
+                            <div class="toselectbox" [id]="'tccurrency' + i">
+                                <div class="select">
+                                    <div class="contenido-select">
+                                        <label class="titulo">Moneda</label>
+                                    </div>
+                                    <i class="fas fa-angle-down"></i>
+                                </div>
+                                <div class="opciones">
+                                    <a href="#" class="opcion" [id]="'tcs'+i+'_'+currency.code" *ngFor="let currency of currencies"
+                                        (click)="selected(item,currency.code)">
+                                        <div class="contenido-opcion">
+                                            <img [src]="'assets/country/'+ currency.code +'.png'" alt="">
+                                            <div class="textos">
+                                                <label class="titulo">{{currency.code}}</label>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <input type="hidden" class="inputSelect" name="currency_value"
+                                    formControlName="currency_value" [id]="'tc_currency_value' + i" />
+                            </div>
+                        </div>
+
+                        <div *ngIf="(validate(item,'tc_value').invalid || validate(item,'currency_value').invalid) && isSubmited"
+                            class="input-feedback">
+                            <label
+                                *ngIf="validate(item,'tc_value').errors?.['required'] || validate(item,'currency_value').errors?.['required']">
+                                Dato requerido.
+                            </label>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 buttons spacer">
+                <button class="btn btn-primary mb-3 principal_white" type="button" (click)="addTc()">+ Agregar otra
+                    tarjeta</button>
+            </div>
+        </ng-container>
+
+
+        <div class="row spacer">
+            <div class="col-12 spacer flexbox-container">
+                <div class="title_icon otras_deudas"></div>
+                <h4 class="bun_blue">Otras deudas</h4>
+            </div>
+        </div>
+        <div class="row spacer">
+            <div class="col-4 radio-order">
+                <label><b>¿Tienes tarjetas de crédito?</b></label> <br>
+                <input type="radio" value="1" name="have_debt" id="have_debt1" formControlName="have_debt"
+                    (click)="addDebts()" />
+                <label for="have_debt1" (click)="addDebts()">Si</label>
+                <input type="radio" value="2" name="have_debt" id="have_debt2" formControlName="have_debt"
+                    (click)="removeDebts()" />
+                <label for="have_debt2" (click)="removeDebts()">No</label>
+                <div *ngIf="form.controls['have_debt'].invalid && isSubmited" class="input-feedback">
+                    <label *ngIf="form.controls['have_debt'].errors?.['required']">
+                        Dato requerido.
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <ng-container *ngIf="form.controls['have_debt'].value+'' === '1'">
+            <div formArrayName="debts">
+                <div class="row spacer" *ngFor="let item of frmDebts.controls; let i = index" [formGroupName]="i">
+                    <div class="col-4">
+                        <label [for]="'debt_entity' + i">Entidad financiera</label>
+                        <input type="text" name="debt_entity" formControlName="debt_entity" [id]="'debt_entity' + i"
+                            placeholder="Ingresa el nombre de la entidad financiera"
+                            class="form-control form-control-lg" />
+
+                        <div *ngIf="validate(item,'debt_entity').invalid && isSubmited" class="input-feedback">
+                            <label *ngIf="validate(item,'debt_entity').errors?.['required']">
+                                Dato requerido.
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <label [for]="'debt_value' + i">Saldo actual</label> <br>
+                        <input type="number" name="debt_value" formControlName="debt_value" [id]="'debt_value' + i"
+                            placeholder="Saldo actual" class="form-control form-control-lg without-border-rigth" />
+
+                        <div class="contenedor without-border-left">
+                            <div class="toselectbox" [id]="'debt_currency' + i">
+                                <div class="select">
+                                    <div class="contenido-select">
+                                        <label class="titulo">Moneda</label>
+                                    </div>
+                                    <i class="fas fa-angle-down"></i>
+                                </div>
+                                <div class="opciones">
+                                    <a href="#" class="opcion" [id]="'debts'+i+'_'+currency.code" *ngFor="let currency of currencies"
+                                        (click)="selected(item,currency.code)">
+                                        <div class="contenido-opcion">
+                                            <img [src]="'assets/country/'+ currency.code +'.png'" alt="">
+                                            <div class="textos">
+                                                <label class="titulo">{{currency.code}}</label>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <input type="hidden" class="inputSelect" name="currency_value"
+                                    formControlName="currency_value" [id]="'tc_currency_value' + i" />
+                            </div>
+                        </div>
+
+                        <div *ngIf="(validate(item,'debt_value').invalid || validate(item,'currency_value').invalid) && isSubmited"
+                            class="input-feedback">
+                            <label
+                                *ngIf="validate(item,'debt_value').errors?.['required'] || validate(item,'currency_value').errors?.['required']">
+                                Dato requerido.
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 buttons spacer">
+                <button class="btn btn-primary mb-3 principal_white" type="button" (click)="addDebts()">+ Agregar otra
+                    deuda</button>
+            </div>
+        </ng-container>
+
+        <div class="row spacer">
+            <div class="col-12 spacer flexbox-container">
+                <div class="title_icon vehiculo"></div>
+                <h4 class="bun_blue">Vehículo</h4>
+            </div>
+        </div>
+        <div class="row spacer">
+            <div class="col-4 radio-order">
+                <label><b>¿Tienes vehículo?</b></label> <br>
+                <input type="radio" value="1" name="have_vehicle" id="have_vehicle_1" formControlName="have_vehicle"
+                    (click)="addVehicle()" /> <label for="have_vehicle_1" (click)="addVehicle()">Si</label>
+                <input type="radio" value="2" name="have_vehicle" id="have_vehicle_2" formControlName="have_vehicle"
+                    (click)="removeVehicles()" /> <label for="have_vehicle_2" (click)="removeVehicles()">No</label>
+                <div *ngIf="form.controls['have_vehicle'].invalid && isSubmited" class="input-feedback">
+                    <label *ngIf="form.controls['have_vehicle'].errors?.['required']">
+                        Dato requerido.
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <ng-container *ngIf="form.controls['have_vehicle'].value+'' === '1'">
+
+            <div formArrayName="vehicles">
+                <div *ngFor="let item of frmVehicles.controls; let i = index" [formGroupName]="i">
+                    <div class="row spacer">
+                        <div class="col-4">
+                            <label [for]="'brand_and_model'+i">Marca y modelo</label>
+                            <input type="text" name="brand_and_model" formControlName="brand_and_model"
+                                [id]="'brand_and_model'+i" placeholder="Ingresa la marca y modelo del vehículo"
+                                class="form-control form-control-lg" />
+                            <div *ngIf="validate(item,'brand_and_model').invalid && isSubmited" class="input-feedback">
+                                <label *ngIf="validate(item,'brand_and_model').errors?.['required']">
+                                    Dato requerido.
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <label [for]="'plate'+i">Placa</label>
+                            <input type="text" name="plate" formControlName="plate" [id]="'plate'+i"
+                                placeholder="Ingtrese la placa del vehiculo" class="form-control form-control-lg" />
+                            <div *ngIf="validate(item,'plate').invalid && isSubmited" class="input-feedback">
+                                <label *ngIf="validate(item,'plate').errors?.['required']">
+                                    Dato requerido.
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <label [for]="'comercial_value'+i">Valor comercial</label>
+                            <input type="number" name="comercial_value" formControlName="comercial_value"
+                                [id]="'comercial_value'+i" placeholder="Ingrese el valor comercial"
+                                class="form-control form-control-lg without-border-rigth" />
+
+                            <div class="contenedor without-border-left">
+                                <div class="toselectbox" [id]="'vehicle_currency' + i">
+                                    <div class="select">
+                                        <div class="contenido-select">
+                                            <label class="titulo">Moneda</label>
+                                        </div>
+                                        <i class="fas fa-angle-down"></i>
+                                    </div>
+                                    <div class="opciones">
+                                        <a href="#" class="opcion" [id]="'vehicles'+i+'_'+currency.code" *ngFor="let currency of currencies"
+                                            (click)="selected(item,currency.code)">
+                                            <div class="contenido-opcion">
+                                                <img [src]="'assets/country/'+ currency.code +'.png'" alt="">
+                                                <div class="textos">
+                                                    <label class="titulo">{{currency.code}}</label>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <input type="hidden" class="inputSelect" name="currency_value"
+                                        formControlName="currency_value" [id]="'vehicle_currency_value' + i" />
+                                </div>
+                            </div>
+                            <div *ngIf="(validate(item,'comercial_value').invalid || validate(item,'currency_value').invalid) && isSubmited"
+                                class="input-feedback">
+                                <label
+                                    *ngIf="validate(item,'comercial_value').errors?.['required'] || validate(item,'currency_value').errors?.['required']">
+                                    Dato requerido.
+                                </label>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row spacer">
+                        <div class="col-4 radio-order">
+                            <label><b>Tipo de servicio</b></label> <br>
+                            <input type="radio" value="1" [name]="'service_type'" formControlName="service_type"
+                                [id]="'service_type'+i+'_1'" />
+                            <label [for]="'service_type'+i+'_1'">Particular</label>
+                            <input type="radio" value="2" [name]="'service_type'" formControlName="service_type"
+                                [id]="'service_type'+i+'_2'" />
+                            <label [for]="'service_type'+i+'_2'">Público</label>
+
+                            <div *ngIf="validate(item,'service_type').invalid && isSubmited" class="input-feedback">
+                                <label *ngIf="validate(item,'service_type').errors?.['required']">
+                                    Dato requerido.
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row spacer">
+                        <div class="col-2 radio-order">
+                            <label><b>¿Tiene prenda?</b></label> <br>
+                            <input type="radio" value="1" [name]="'has_debt'" formControlName="has_debt"
+                                [id]="'has_debt'+i+'_1'" /> <label [id]="'has_debt'+i+'_1'">Si</label>
+                            <input type="radio" value="2" [name]="'has_debt'" formControlName="has_debt"
+                                [id]="'has_debt'+i+'_2'" /> <label [id]="'has_debt'+i+'_2'">No</label>
+
+                            <div *ngIf="validate(item,'has_debt').invalid && isSubmited" class="input-feedback">
+                                <label *ngIf="validate(item,'has_debt').errors?.['required']">
+                                    Dato requerido.
+                                </label>
+                            </div>
+                        </div>
+
+                        <ng-container *ngIf="validate(item,'has_debt').value === '1'">
+                            <div class="col-4">
+                                <label for="favor_of">A favor de</label>
+                                <input type="text" name="favor_of" formControlName="favor_of" id="favor_of"
+                                    placeholder="A favor de" class="form-control form-control-lg" />
+                                <div *ngIf="validate(item,'favor_of').invalid && isSubmited" class="input-feedback">
+                                    <label *ngIf="validate(item,'favor_of').errors?.['required']">
+                                        Dato requerido.
+                                    </label>
+                                </div>
+                            </div>
+                        </ng-container>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-12 buttons spacer">
+                <button class="btn btn-primary mb-3 principal_white" type="button" (click)="addVehicle()">+ Agregar otro
+                    vehículo</button>
+            </div>
+
+        </ng-container>
+
+
+        <div class="row spacer">
+            <div class="col-12 spacer flexbox-container">
+                <div class="title_icon propiedad"></div>
+                <h4 class="bun_blue">Propiedad raíz</h4>
+            </div>
+        </div>
+        <div class="row spacer">
+            <div class="col-4 radio-order">
+                <label><b>¿Tienes finca raíz?</b></label> <br>
+                <input type="radio" value="1" name="have_property" id="have_property_1" formControlName="have_property"
+                    (click)="addProperty()" /> <label for="have_property_1" (click)="addProperty()">Si</label>
+                <input type="radio" value="2" name="have_property" id="have_property_2" formControlName="have_property"
+                    (click)="removeProperties()" /> <label for="have_property_2" (click)="removeProperties()">No</label>
+                <div *ngIf="form.controls['have_property'].invalid && isSubmited" class="input-feedback">
+                    <label *ngIf="form.controls['have_property'].errors?.['required']">
+                        Dato requerido.
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <ng-container *ngIf="form.controls['have_property'].value+'' === '1'">
+            <div formArrayName="properties">
+                <div *ngFor="let item of frmProperties.controls; let i = index" [formGroupName]="i">
+                    <div class="row spacer">
+                        <div class="col-4">
+                            <label for="type_property">Tipo de inmueble</label>
+                            <input type="text" name="type_property" formControlName="type_property" id="type_property"
+                                placeholder="Ingresa el nombre de la entidad financiera"
+                                class="form-control form-control-lg" />
+                            <div *ngIf="validate(item,'type_property').invalid && isSubmited" class="input-feedback">
+                                <label *ngIf="validate(item,'type_property').errors?.['required']">
+                                    Dato requerido.
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <label for="city_property">Ciudad de ubicación del inmueble</label>
+                            <input type="text" name="city_property" formControlName="city_property" id="city_property"
+                                placeholder="Ciudad del inmueble" class="form-control form-control-lg" />
+                            <div *ngIf="validate(item,'city_property').invalid && isSubmited" class="input-feedback">
+                                <label *ngIf="validate(item,'city_property').errors?.['required']">
+                                    Dato requerido.
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <label for="address_property">Dirección del inmueble</label>
+                            <input type="text" name="address_property" formControlName="address_property"
+                                id="address_property" placeholder="Direccion de la propiedad"
+                                class="form-control form-control-lg" />
+                            <div *ngIf="validate(item,'address_property').invalid && isSubmited" class="input-feedback">
+                                <label *ngIf="validate(item,'address_property').errors?.['required']">
+                                    Dato requerido.
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row spacer">
+                        <div class="col-4">
+                            <label for="comercial_value">Valor comercial</label>
+                            <input type="text" name="comercial_value" formControlName="comercial_value"
+                                id="comercial_value" placeholder="Ingresa el valor comercial"
+                                class="form-control form-control-lg without-border-rigth" />
+
+                            <div class="contenedor without-border-left">
+                                <div class="toselectbox" [id]="'property_currency' + i">
+                                    <div class="select">
+                                        <div class="contenido-select">
+                                            <label class="titulo">Moneda</label>
+                                        </div>
+                                        <i class="fas fa-angle-down"></i>
+                                    </div>
+                                    <div class="opciones">
+                                        <a href="#" class="opcion" [id]="'properties'+i+'_'+currency.code" *ngFor="let currency of currencies"
+                                            (click)="selected(item,currency.code)">
+                                            <div class="contenido-opcion">
+                                                <img [src]="'assets/country/'+ currency.code +'.png'" alt="">
+                                                <div class="textos">
+                                                    <label class="titulo">{{currency.code}}</label>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+
+                                    <input type="hidden" class="inputSelect" name="currency_value"
+                                        formControlName="currency_value" [id]="'vehicle_currency_value' + i" />
+                                </div>
+                            </div>
+
+                            <div *ngIf="(validate(item,'comercial_value').invalid || validate(item,'currency_value').invalid) && isSubmited"
+                                class="input-feedback">
+                                <label
+                                    *ngIf="validate(item,'comercial_value').errors?.['required'] || validate(item,'currency_value').errors?.['required']">
+                                    Dato requerido.
+                                </label>
+                            </div>
+
+                        </div>
+
+                        <div class="col-2 radio-order">
+                            <label><b>¿Tiene hipotéca?</b></label> <br>
+                            <input type="radio" value="1" name="has_mortgage" formControlName="has_mortgage"
+                                id="has_mortgage_1" /> <label for="has_mortgage_1">Si</label>
+                            <input type="radio" value="2" name="has_mortgage" formControlName="has_mortgage"
+                                id="has_mortgage_2" /> <label for="has_mortgage_2">No</label>
+                            <div *ngIf="validate(item,'has_mortgage').invalid && isSubmited" class="input-feedback">
+                                <label *ngIf="validate(item,'has_mortgage').errors?.['required']">
+                                    Dato requerido.
+                                </label>
+                            </div>
+                        </div>
+
+                        <ng-container *ngIf="validate(item,'has_mortgage').value === '1'">
+                            <div class="col-4">
+                                <label for="favor_to">A favor de</label>
+                                <input type="text" name="favor_to" formControlName="favor_to" id="favor_to"
+                                    placeholder="A favor de" class="form-control form-control-lg" />
+                                <div *ngIf="validate(item,'favor_to').invalid && isSubmited" class="input-feedback">
+                                    <label *ngIf="validate(item,'favor_to').errors?.['required']">
+                                        Dato requerido.
+                                    </label>
+                                </div>
+                            </div>
+                        </ng-container>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 buttons spacer">
+                <button class="btn btn-primary mb-3 principal_white" type="button" (click)="addProperty()">+ Agregar
+                    otra propiedad</button>
+            </div>
+        </ng-container>
+
+        <!-- --------------------------->
+
+        <div class="row spacer">
+            <div class="col-12 spacer flexbox-container">
+                <div class="title_icon total_activos"></div>
+                <h4 class="bun_blue">Total activos y pasivos del solicitante</h4>
+            </div>
+        </div>
+
+        <div class="row spacer">
+            <div class="col-4">
+                <label for="total_actives" style="width: 100%;">Total activos</label>
+                <input type="number" name="total_actives" formControlName="total_actives" id="total_actives"
+                    placeholder="Ingresa el total de activos"
+                    class="form-control form-control-lg without-border-rigth" />
+
+                <div class="contenedor without-border-left">
+                    <div class="toselectbox" id="actives_currency">
+                        <div class="select">
+                            <div class="contenido-select">
+                                <label class="titulo">Moneda</label>
+                            </div>
+                            <i class="fas fa-angle-down"></i>
+                        </div>
+                        <div class="opciones">
+                            <a href="#" class="opcion" id="actives_currency_value_select" *ngFor="let item of currencies" (click)="selected(form,item.code,'actives_currency_value')">
+                                <div class="contenido-opcion">
+                                    <img [src]="'assets/country/'+ item.code +'.png'" alt="">
+                                    <div class="textos">
+                                        <label class="titulo">{{item.code}}</label>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <input type="hidden" class="inputSelect" name="actives_currency_value"
+                            formControlName="actives_currency_value" id='actives_currency_value' />
+                    </div>
+                </div>
+
+                <div *ngIf="(validate(form,'total_actives').invalid || validate(form,'actives_currency_value').invalid) && isSubmited"
+                    class="input-feedback">
+                    <label
+                        *ngIf="validate(form,'total_actives').errors?.['required'] || validate(form,'actives_currency_value').errors?.['required']">
+                        Dato requerido.
+                    </label>
+                </div>
+            </div>
+            <div class="col-4">
+                <label for="total_passives" style="width: 100%;">Total pasivos</label>
+                <input type="number" name="total_passives" formControlName="total_passives" id="total_passives"
+                    placeholder="Ingresa el total de pasivos"
+                    class="form-control form-control-lg without-border-rigth" />
+
+                <div class="contenedor without-border-left">
+                    <div class="toselectbox" id="pasives_currency">
+                        <div class="select">
+                            <div class="contenido-select">
+                                <label class="titulo">Moneda</label>
+                            </div>
+                            <i class="fas fa-angle-down"></i>
+                        </div>
+                        <div class="opciones">
+                            <a href="#" class="opcion" id="passives_currency_value_select" *ngFor="let item of currencies" (click)="selected(form,item.code,'passives_currency_value')">
+                                <div class="contenido-opcion">
+                                    <img [src]="'assets/country/'+ item.code +'.png'" alt="">
+                                    <div class="textos">
+                                        <label class="titulo">{{item.code}}</label>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <input type="hidden" class="inputSelect" name="passives_currency_value"
+                            formControlName="passives_currency_value" id='passives_currency_value' />
+                    </div>
+                </div>
+
+                <div *ngIf="(validate(form,'total_passives').invalid || validate(form,'passives_currency_value').invalid) && isSubmited"
+                    class="input-feedback">
+                    <label
+                        *ngIf="validate(form,'total_passives').errors?.['required'] || validate(form,'passives_currency_value').errors?.['required']">
+                        Dato requerido.
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <br>
+        <div class="col-12 buttons spacer">
+            <button class="btn btn-primary mb-3 float-end principal_blue" type="submit">Siguiente</button>
+
+            <button class="btn btn-primary mb-3 float-end principal_white" type="button" (click)="back()">Atrás</button>
+
+        </div>
+
+
+    </form>
+</div>

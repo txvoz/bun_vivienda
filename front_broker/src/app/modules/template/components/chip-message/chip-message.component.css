@@ -1,0 +1,59 @@
+.chip-message {
+    width: 420px;
+    height: 74px;
+    background-color: rgba(255, 255, 255);
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding-top: 15px;
+    padding-left: 15px;
+}
+
+.chip-message .close {
+    position: absolute;
+    font-weight: bold;
+    top: 0px;
+    right: 5px;
+    cursor: pointer;
+    color: #5D5D5D;
+}
+
+.chip-message .icon {
+    position: relative;
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+.chip-message .message {
+    vertical-align: top;
+    position: relative;
+    display: inline-block;
+}
+
+.chip-message .message .title {
+    font-weight: bold;
+}
+
+.chip-message .message p {
+    font-size: 13px;
+}
+
+.chip-message.info .message .title {
+    color: #15A4E0;
+} 
+
+.chip-message.error .message .title {
+    color: #DF4661;
+} 
+
+.chip-message .icon.send-email {
+    background-image: url('src/assets/chipMessage/send_email.png');
+}
+
+.chip-message .icon.not-send-email {
+    background-image: url('src/assets/chipMessage/not_send_email.png');
+}

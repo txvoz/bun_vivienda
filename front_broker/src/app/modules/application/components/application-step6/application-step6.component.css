@@ -1,0 +1,24 @@
+.file-content {
+    background: #FFFFFF;
+    box-shadow: 0px 4.60177px 9.20354px rgba(80, 95, 108, 0.15);
+    border-radius: 10px;
+    margin-top: 15px;
+    padding: 10px;
+    height: auto;
+}
+
+.icon {
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 100px;
+    height: 118px;
+    display: inline-flex;
+}
+
+.upload .icon {
+    background-image: url('src/assets/files/file_upload.png');
+}
+
+.uploaded .icon {
+    background-image: url('src/assets/files/file_uploaded.png');
+}

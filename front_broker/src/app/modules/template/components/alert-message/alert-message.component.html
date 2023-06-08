@@ -1,0 +1,23 @@
+<ng-container *ngIf="data.display+'' == 'true'">
+    <div class="mask">
+        <section class="content">
+            <div class="close" (click)="close()">X</div>
+            <ng-container *ngIf="data.type+'' == 'credit-application'; else secondTitle">
+                <div class="title">¡Has terminado con el formulario de crédito de vivienda Banco Unión!</div>
+                <div class="message">El siguiente paso es la firma de los documentos por parte del cliente.</div>
+                <ng-container >
+                    <div class="sub_message">No olvides el código de la solicitud.</div>
+                    <div class="code">{{data.code}}</div>
+                </ng-container>
+            </ng-container>
+
+            <ng-template #secondTitle>
+                <div class="title">Lo sentimos algo ha ocurrido</div>
+                <div class="message">No hemos podido procesar tu solicitud debido a un error inesperado. Por favor, inténtalo de nuevo.</div>
+            </ng-template>
+           
+            <button class="principal_blue btn_small" (click)="close()">Cerrar</button>
+        </section>
+    </div>
+</ng-container>
+

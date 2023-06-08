@@ -1,0 +1,138 @@
+
+a {
+	text-decoration: none;
+}
+
+.selectbox {
+	position: relative;
+}
+
+.fa-angle-down {
+	max-width: 5px;
+	max-height: 5px;
+}
+
+.fa-angle-down:before {
+    content: url('src/assets/country/arrow.png');
+	display:block;
+    width: 5px;
+	height: 100%;
+	width: 100%;
+}
+
+.select {
+	background: #FAFAFA;
+	width: 100%;
+	box-shadow: 0px 0px 0px rgba(0, 0, 0, .16);
+	border-radius: 0.5rem;
+	cursor: pointer;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	transition: .2s ease all;
+	--margin-bottom: 30px;
+	padding: 1px 10px;
+	position: relative;
+	z-index: 200;
+	border: 1px solid #ced4da;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    height: 41.6px;
+}
+
+.select.active,
+.select:hover {
+	box-shadow: 0px 5px 10px rgba(0, 0, 0, .16);
+	border: 1px solid #15A4E0;
+    z-index: 10000 !important;
+}
+
+.-select.active:before {
+	content: "";
+	display: block;
+	height: 0;
+	width: 0;
+	border-top: 15px solid #213f8f;
+	border-right: 15px solid transparent;
+	border-bottom: 15px solid transparent;
+	border-left: 15px solid transparent;
+	position: absolute;
+	bottom: -30px;
+	left: calc(50% - 15px);
+}
+
+.select i {
+	font-size: 9px;
+	margin-left: 9px;
+	color: #213f8f;
+	margin-right: 10px;
+}
+
+.titulo {
+	color: #000;
+	font-size: 10px;
+}
+
+.descripcion {
+	font-size: 18px;
+	color: #434343;
+}
+
+.opciones {
+	background: #fff;
+	border-radius: 10px;
+	box-shadow: 0px 5px 10px rgba(0,0,0,.16);
+	max-height: 400px;
+	overflow: auto;
+	z-index: 100;
+	width: 100%;
+	display: none;
+}
+
+.opciones.active {
+	display: block;
+	animation: fadeIn .3s forwards;
+    position: relative;
+    z-index: 1000000;
+}
+
+@keyframes fadeIn {
+	from {
+		transform: translateY(-200px) scale(.5);
+	}
+	to {
+		transform: translateY(0) scale(1);
+	}
+}
+
+.contenido-opcion {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	transition: .2s ease all;
+}
+
+.opciones .contenido-opcion {
+	padding: 10px;
+}
+
+.contenido-opcion img {
+	width: 17px;
+	height: 17px;
+	margin-right: 10px;
+}
+
+.opciones .contenido-opcion:hover {
+	background: #213F8F;
+}
+
+.opciones .contenido-opcion:hover .titulo,
+.opciones .contenido-opcion:hover .descripcion {
+	color: #fff;
+}
+
+@media screen and (max-width: 800px){
+	.selectbox {
+		width: 90px;
+	}
+}
