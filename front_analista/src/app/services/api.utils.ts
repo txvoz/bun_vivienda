@@ -13,7 +13,7 @@ export abstract class ApiGeneral {
     constructor(protected http: HttpClient) { }
     
     private handleError(error: HttpErrorResponse) {
-        console.log(error);
+        //console.log(error);
 
         if (error.status === 0) {
           // A client-side or network error occurred. Handle it accordingly.
@@ -36,12 +36,12 @@ export abstract class ApiGeneral {
       }
 
     private handlerCallback(request: any, callback: Function, method: string): void {
-        console.log("REQUEST METHOD " + method + ": ", request);
+        //console.log("REQUEST METHOD " + method + ": ", request);
         if (callback) {
             try {
                 callback(request);
             } catch (e) {
-                console.log("ERROR CALLBACK METHOD " + method + ": ", e);
+                //console.log("ERROR CALLBACK METHOD " + method + ": ", e);
             }
         }
     }
@@ -65,13 +65,13 @@ export abstract class ApiGeneral {
             myHeaders["Authorization-token"] = authToken;
         }
 
-        console.log("HEADERS=>");
-        console.log(myHeaders);
+        //console.log("HEADERS=>");
+        //console.log(myHeaders);
         return myHeaders;
     }
 
     protected get<R>(endpoint: string, fn: Function = new Function): Observable<R | any> {
-        console.log("URL METHOD GET: ", endpoint);
+        //console.log("URL METHOD GET: ", endpoint);
         let opts: any = {
             headers: this.headersREST('get')
         };
@@ -81,7 +81,7 @@ export abstract class ApiGeneral {
     }
 
     protected delete<R>(endpoint: string, fn: Function = new Function): Observable<R | any> {
-        console.log("URL METHOD DELETE: ", endpoint);
+        //console.log("URL METHOD DELETE: ", endpoint);
         let opts: any = {
             headers: this.headersREST('delete')
         };

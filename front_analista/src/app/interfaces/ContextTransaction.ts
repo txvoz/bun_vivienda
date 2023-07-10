@@ -3,3 +3,9 @@ export interface ContextTransaction {
     dateTx:string, 
     success:string,
 }
+
+export interface ContextResponse {
+    idTx:string,
+    dateTx:string, 
+    codStateTx:string,
+}

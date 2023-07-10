@@ -1,44 +1,180 @@
 <div class="row content-table">
-    <div class="col-12">
-        <h2>Lista de créditos</h2>
-        <table>
-            <thead>
-                <th>Número de solicitud</th>
-                <th>Número de identificación</th>
-                <th>Nombre del cliente</th>
-                <th>Analista asignado</th>
-                <th>Fecha de la solicitud</th>
-                <th>Monto solicitado</th>
-                <th>Monto para estudio</th>
-                <th>Monto aprobado</th>
-                <th>Estado de la solicitud</th>
-                <th>Detalles del crédito</th>
-            </thead>
-            <tbody>
-                <tr *ngFor="let c of datasource?.content">
-                    <td>{{c?.id_request}}</td>
-                    <td>{{c?.identification}}</td>
-                    <td>{{c?.first_name}} {{c?.last_name}}</td>
-                    <td>N/A</td>
-                    <td>{{c?.datecreated}}</td>
-                    <td>{{c?.credit_value}}</td>
-                    <td>{{c?.amount_credit_study}}</td>
-                    <td>{{c?.amount_approved}}</td>
-                    <td>{{c?.status}}</td>
-                    <td>
-                        <div class="detail-icon fold" (click)="detail(c)"></div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-
-        <nav *ngIf="datasource?.pages">
-            <ul class="pagination">
-                <li class="page-item" *ngFor="let p of datasource?.pages, index as i"
-                    (click)="setPag(i)">
-                    <div [ngClass]="{'active' : i == datasource?.numberPage}"></div>
-                </li>
-            </ul>
-        </nav>
+  <div class="col-12">
+    <h2>Lista de créditos</h2>
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">
+              <div class="sort-header">
+                Número de solicitud
+                <div
+                  class="icons arrow1"
+                  (click)="sortData('id_request'); toggleSortDirection()"
+                ></div>
+              </div>
+            </th>
+            <th scope="col">
+              <div class="sort-header">
+                Número de identificación
+                <div
+                  class="icons arrow1"
+                  (click)="sortData('identification'); toggleSortDirection()"
+                ></div>
+              </div>
+            </th>
+            <th scope="col">
+              <div class="sort-header">
+                Nombre del cliente
+                <div
+                  class="icons arrow1"
+                  (click)="sortData('first_name'); toggleSortDirection()"
+                ></div>
+              </div>
+            </th>
+            <th scope="col">
+              <div class="sort-header">Analista asignado</div>
+            </th>
+            <th scope="col">
+              <div class="sort-header">
+                Fecha de la solicitud
+                <div
+                  class="icons arrow1"
+                  (click)="sortData('datecreated'); toggleSortDirection()"
+                ></div>
+              </div>
+            </th>
+            <th scope="col">
+              <div class="sort-header">
+                Monto solicitado
+                <div
+                  class="icons arrow1"
+                  (click)="sortData('credit_value'); toggleSortDirection()"
+                ></div>
+              </div>
+            </th>
+            <th scope="col">
+              <div class="sort-header">
+                Monto para estudio
+                <div
+                  class="icons arrow1"
+                  (click)="
+                    sortData('amount_credit_study'); toggleSortDirection()
+                  "
+                ></div>
+              </div>
+            </th>
+            <th scope="col">
+              <div class="sort-header">
+                Monto aprobado
+                <div
+                  class="icons arrow1"
+                  (click)="sortData('amount_approved'); toggleSortDirection()"
+                ></div>
+              </div>
+            </th>
+            <th scope="col">
+              <div class="sort-header">
+                Estado de la solicitud
+                <div
+                  class="icons arrow1"
+                  (click)="sortData('status'); toggleSortDirection()"
+                ></div>
+              </div>
+            </th>
+            <th scope="col">
+              <div class="sort-header">Detalles del crédito</div>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let c of datasource?.content">
+            <td>{{ c?.id_request }}</td>
+            <td>{{ c?.identification }}</td>
+            <td>{{ c?.first_name }} {{ c?.last_name }}</td>
+            <td>N/A</td>
+            <td>{{ c?.datecreated | date : "dd/MM/yyyy" }}</td>
+            <td>{{ c?.credit_value }}</td>
+            <td>{{ c?.amount_credit_study }}</td>
+            <td>{{ c?.amount_approved }}</td>
+            <td>{{ c?.status }}</td>
+            <td>
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="detail-icon fold" (click)="detail(c)"></div>
+                  </div>
+                  <div class="col-md-6">
+                    <div
+                      class="detail-icon clean"
+                      (click)="openModal(c.id_request)"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
+    <nav *ngIf="datasource?.pages">
+      <ul class="pagination">
+        <li
+          class="page-item"
+          *ngFor="let p of datasource?.pages; index as i"
+          (click)="setPag(i)"
+        >
+          <div [ngClass]="{ active: i == datasource?.numberPage }"></div>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div id="myModal" class="modal">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button
+          id="closeBtn"
+          (click)="closeModal()"
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body text-center">
+        <p style="font-size: 20px">¿Estás seguro de eliminar está solicitud?</p>
+      </div>
+      <div
+        class="modal-footer justify-content-center"
+        style="margin-bottom: 40px"
+      >
+        <button
+          id="closeBtn"
+          (click)="closeModal()"
+          type="button"
+          class="btn btn-primary principal_white"
+          data-bs-dismiss="modal"
+          style="width: 225px"
+        >
+          Cancelar
+        </button>
+
+        <button
+          id="closeBtn"
+          (click)="cancelRequest(selectedRequestId)"
+          type="button"
+          class="btn btn-primary principal_blue"
+          data-bs-dismiss="modal"
+          style="width: 225px"
+        >
+          Aceptar
+        </button>
+      </div>
+    </div>
+  </div>
 </div>

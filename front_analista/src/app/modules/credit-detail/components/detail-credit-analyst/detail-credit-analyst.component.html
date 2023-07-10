@@ -1,0 +1,303 @@
+<div class="jumbotron">
+  <app-navbar></app-navbar>
+  <div class="container" *ngIf="index > -1">
+    <div class="row"><br /><br /></div>
+    <div class="row">
+      <div class="col-sm-2">
+        <section class="custom-container">
+          <div class="row">
+            <div class="col-12">
+              <h4 class="bun_blue">Información de la solicitud</h4>
+            </div>
+
+            <div class="col-12 detail-left">
+              <div class="detail-icon doc"></div>
+              <div class="container">
+                <h6>Número de solicitud</h6>
+                <p>{{ datasource?.response?.idRequest }}</p>
+              </div>
+            </div>
+
+            <div class="col-12 detail-left">
+              <div class="detail-icon date"></div>
+              <div class="container">
+                <h6>Fecha de solicitud</h6>
+                <p>{{ datasource?.response?.createAt }}</p>
+              </div>
+            </div>
+
+            <div class="col-12 detail-left">
+              <div class="detail-icon state"></div>
+              <div class="container">
+                <h6>Estado</h6>
+                <p>{{ datasource?.response?.status }}</p>
+              </div>
+            </div>
+
+            <div class="col-12 detail-left">
+              <div class="detail-icon user"></div>
+              <div class="container">
+                <h6>Asesor broker</h6>
+                <p>
+                  {{ datasource?.response?.brokerName }} <br />
+                  ID: {{ datasource?.response?.brokerDni }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+      <div class="col-sm-10">
+        <div class="row">
+          <div class="col-12">
+            <h2 class="bun_blue">Participantes asociados al crédito</h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <div class="row" style="padding: 15px">
+              <div
+                *ngFor="let p of datasource?.response?.participants; index as i"
+                class="col-auto content-person"
+                [ngClass]="{ active: index == i }"
+                (click)="setPivote(i)"
+              >
+                <div class="avatar">{{ getAvatar(p) }}</div>
+                <div class="group">
+                  <label class="name">{{ p?.names }}</label>
+                  <ng-container>
+                    <label class="type">{{ p?.type }}</label>
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <section class="custom-container" style="padding: 35px">
+          <div class="row">
+            <div class="col-12">
+              <h4 class="bun_blue">Datos deudor {{ index + 1 }}.</h4>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-auto detail-left">
+              <div class="detail-icon carnet"></div>
+              <div class="container">
+                <h6>Tipo de documento</h6>
+                <p>{{ pivote?.documentType }}</p>
+              </div>
+            </div>
+            <div class="col-auto detail-left">
+              <div class="detail-icon carnet"></div>
+              <div class="container">
+                <h6>Número de documento</h6>
+                <p>{{ pivote?.dni }}</p>
+              </div>
+            </div>
+            <div class="col-auto detail-left">
+              <div class="detail-icon user"></div>
+              <div class="container">
+                <h6>Nombre completo</h6>
+                <p>{{ pivote?.names + " " + pivote?.lastNames }}</p>
+              </div>
+            </div>
+            <div class="col-auto detail-left">
+              <div class="detail-icon email"></div>
+              <div class="container">
+                <h6>Correo electrónico</h6>
+                <p>{{ pivote?.email }}</p>
+              </div>
+            </div>
+            <div class="col-auto detail-left">
+              <div class="detail-icon phone"></div>
+              <div class="container">
+                <h6>Número celular</h6>
+                <p>{{ pivote?.number }}</p>
+              </div>
+            </div>
+          </div>
+          <br />
+          <div class="row">
+            <div class="col-12">
+              <h5 class="bun_blue">Validación del crédito</h5>
+            </div>
+          </div>
+
+          <br />
+
+            <!-- Los botones de estado -->
+            <div class="row">
+                <div class="col">
+                  <button
+                    class="background-state button-state color-font"
+                    (click)="approved()"
+                  >
+                    <div class="icon-state approved"></div>
+                    Aprobada
+                  </button>
+                </div>
+  
+                <div class="col">
+                  <button
+                    class="background-state button-state color-font1"
+                    (click)="approvedException()"
+                  >
+                    <div class="approved2"></div>
+                    Aprobada con excepción
+                  </button>
+                </div>
+  
+                <div class="col">
+                  <button
+                    class="background-state button-state color-font2"
+                    (click)="rejected()"
+                  >
+                    <div class="icon-state rejected"></div>
+                    Rechazada
+                  </button>
+                </div>
+  
+                <div class="col">
+                  <button
+                    class="background-state button-state color-font2"
+                    (click)="returned()"
+                  >
+                    <div class="icon-state rejected"></div>
+                    Devuelto
+                  </button>
+                </div>
+              </div>
+
+          <form [formGroup]="form" (ngSubmit)="submit()" id="formx"><!-- (ngSubmit)="submit()" -->
+
+            <br />
+            <!-- Como se muestran las opciones seleccionadas -->
+            <div class="row">
+              <div class="col" *ngFor="let option of selectedOptions">
+                <button class="option-select">
+                  <span class="button-text">{{ option }}</span>
+                  <strong class="x" (click)="deselectOption(option)">X</strong>
+                </button>
+              </div>
+            </div>
+
+            <!-- Select -->
+            <div [hidden]="!showSelect">
+              <div class="col-sm-12 col-md-6">
+                <label class="label-style" for="origin_assets"
+                  >Conoce la causa del estado
+                </label>
+              </div>
+
+              <div class="custom-select-wrapper col-sm-12 col-md-4">
+                <div
+                  class="custom-select form-select"
+                  (click)="toggleOptions()"
+                >
+                  <div class="selected-option">
+                    <!--{{ selectedOptions.length }} -->
+                    Seleccione la razón del rechazó
+                  </div>
+                </div>
+                <div class="options" [class.open]="optionsOpen">
+                  <div
+                    *ngFor="let option of selectOptions"
+                    (click)="toggleOption(option)"
+                  >
+                    <input
+                      type="checkbox"
+                      formControlName="selectOp"
+                      [checked]="selectedOptions.includes(option)"
+                    />
+                    {{ option }}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <br />
+
+            <div class="col-sm-12 col-md-3" [hidden]="!showAmountApproved">
+              <label class="label-style" for="amountApproved"
+                >Monto aprobado</label
+              >
+              <input
+                type="text"
+                name="amountApproved"
+                id="amountApproved"
+                formControlName="amountApproved"
+                autocomplete="off"
+                placeholder="$"
+                required
+                class="form-control form-control-lg"
+                (input)="onAmountApprovedChange()"
+                appOnlyNumbers
+              />
+            </div>
+            <br />
+          </form>
+        </section>
+
+        <br />
+        <div class="row">
+          <div class="col-5"></div>
+          <div class="col-6">
+            <button
+              class="btn btn-primary mb-3 float-end principal_white"
+              type="button"
+              style="width: 250px"
+              [disabled]="isSelectionEmpty && isAmountApprovedEmpty"
+              (click)="submit()"
+            >
+              Guardar cambios
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-footer></app-footer>
+</div>
+
+<!-- Modal -->
+<div id="myModal" class="modal">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button
+          id="closeBtn"
+          (click)="closeModal()"
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body text-center">
+        <img src="../../../../../assets/toggle_buttons/save.png" alt="" />
+        <h2 class="bun_blue" style="margin-top: 25px; margin-bottom: 25px">
+          ¡Listo!
+        </h2>
+        <p style="font-size: 20px">
+          La información que registraste se guardó exitosamente.
+        </p>
+      </div>
+      <div
+        class="modal-footer justify-content-center"
+        style="margin-bottom: 40px"
+      >
+        <button
+          id="closeBtn"
+          (click)="closeModal()"
+          type="button"
+          class="btn btn-primary principal_blue"
+          data-bs-dismiss="modal"
+          style="width: 225px"
+        >
+          Cerrar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

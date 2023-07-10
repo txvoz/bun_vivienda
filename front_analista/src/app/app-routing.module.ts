@@ -8,6 +8,7 @@ import { PublicGuard } from "./guards/PublicGuard";
 import { PrivateGuard } from "./guards/PrivateGuard";
 import { CreditListMainComponent } from "./modules/credit-list/components/credit-list-main/credit-list-main.component";
 import { CreditDetailMainComponent } from "./modules/credit-detail/components/credit-detail-main/credit-detail-main.component";
+import { DetailCreditAnalystComponent } from "./modules/credit-detail/components/detail-credit-analyst/detail-credit-analyst.component";
 
 const routes: Routes = [
     {
@@ -31,7 +32,11 @@ const routes: Routes = [
         component: CreditDetailMainComponent,
         canActivate: [PrivateGuard]
     },
-    
+    {
+        path: "credit/detail-analyst/:id",            /* Arreglar/Revisar esta ruta al terminar de maquetar */
+        component: DetailCreditAnalystComponent,
+        canActivate: [PrivateGuard]
+    },
     {
         path: "credit/request/:id",
         component: ApplicationMainComponent,

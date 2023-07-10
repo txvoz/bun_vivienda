@@ -1,0 +1,240 @@
+.container,
+.container-lg,
+.container-md,
+.container-sm,
+.container-xl {
+  max-width: -webkit-fill-available;
+}
+
+.custom-container {
+  padding: 15px;
+  background: #ffffff;
+  box-shadow: 0px 7px 26px rgba(207, 220, 230, 0.5);
+  border-radius: 15px;
+}
+
+.detail-left {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.detail-left .detail-icon {
+  display: inline-block;
+  margin-right: 5px;
+  vertical-align: top;
+  width: 10%;
+  background-repeat: no-repeat;
+}
+
+.detail-left .container {
+  display: inline-block;
+  vertical-align: top;
+  width: 85%;
+}
+
+.detail-left .container h6 {
+  font-size: 14px;
+  font-weight: bold;
+  font-family: 'Rubik';
+}
+
+.content-person .group {
+  width: 149px !important;
+}
+
+.content-person {
+  width: 225px !important;
+}
+
+.content-person {
+  cursor: pointer;
+}
+
+.label-style {
+    font-family: "Rubik";
+    font-style: normal;
+    font-weight: 450;
+    font-size: 16px;
+  }
+
+option {
+  font-family: "Rubik";
+  font-size: 14px;
+}
+
+.button-state {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 20px;
+  gap: 8px;
+  width: 230px;
+  height: 40px;
+  box-shadow: 0px 4.60177px 9.20354px rgba(80, 95, 108, 0.15);
+  border-radius: 10px;
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+}
+
+.background-state {
+  background: #ffffff;
+  margin-bottom: 10px;
+}
+
+.color-font {
+  color: #009154;
+}
+
+.color-font1 {
+  color: #cf701f;
+}
+
+.color-font2 {
+  color: #c94a60;
+}
+
+.icon-state {
+  background-size: 100%;
+  width: 16px;
+  height: 19px;
+}
+
+.icon-state.approved {
+  background-image: url("src/assets/states/approved.png");    
+  background-repeat: no-repeat;
+}
+
+.approved2 {
+  background-size: 100%;
+  width: 16px;
+  height: 18px;
+  background-image: url("src/assets/states/approved2.png");
+  background-repeat: no-repeat;
+}
+
+.icon-state.rejected {
+  background-image: url("src/assets/states/rejected.png");
+  background-repeat: no-repeat;
+}
+
+.arrow-down {
+  background-image: url("src/assets/states/arrow-down.png");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 16px;
+  height: 11px;
+}
+
+.arrow-up {
+  background-image: url("src/assets/states/arrow-up.png");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 16px;
+  height: 11px;
+}
+
+.option-select {
+  padding: 20px 20px;
+  background: #00a6cf;
+  border-radius: 20px;
+  margin-bottom: 15px;
+
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.button-text {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 10px;
+  max-width: 100%;
+  word-break: break-word;
+}
+
+.x {
+  margin-left: 10px;
+  font-size: 20px;
+  font-family: Rubik;
+  cursor: pointer;
+}
+
+.title {
+  margin-left: 8px; 
+}
+
+/* Clases del select */
+
+.custom-select-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.custom-select {
+  cursor: pointer;
+  position: relative;
+  padding: 10px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+}
+
+.selected-option {
+  margin-bottom: 5px;
+  font-family: "Rubik";
+  font-size: 14px;
+  color: #c4c4c4;
+}
+
+.options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  display: none;
+  padding: 10px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  font-family: "Rubik";
+  font-size: 14px;
+  max-height: 200px; 
+  overflow-y: auto
+}
+
+.options.open {
+  display: block;
+  font-family: "Rubik";
+  font-size: 14px;
+}
+
+.options > div {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  cursor: pointer;
+  font-family: "Rubik";
+  font-size: 14px;
+}
+
+.options input[type="checkbox"] {
+  margin-right: 5px;
+  font-family: "Rubik";
+  font-size: 14px;
+}
+
+.modal-header {
+  border-bottom: none;
+}
+
+.modal-footer {
+  border-top: none;
+}
+
+

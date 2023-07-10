@@ -10,7 +10,7 @@ import { CreditItemResponse, CreditListItem, CreditListResponse } from '../inter
 })
 export class CreditListService extends ApiGeneral {
 
-  private static SIZE: number = 25;
+  private static SIZE: number = 50;
 
   protected override needJwt(): boolean {
     return true;

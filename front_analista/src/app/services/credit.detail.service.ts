@@ -21,7 +21,7 @@ export class CreditDetailService extends ApiGeneral {
   }
 
   getDetail(id: string): Observable<CreditDetailResponse> {
-    console.log("CreditDetail::get::" + id);
+    //console.log("CreditDetail::get::" + id);
     let idPath = this.URL;
     idPath = idPath.replace(/{id}/g, id);
     return super.get(idPath);

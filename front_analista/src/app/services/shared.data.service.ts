@@ -36,103 +36,103 @@ export class SharedDataService implements OnInit {
     this.supportService.getYears().subscribe(data => {
       this.years = data.domain?.valuesDomain;
       this.yearsMessageSource.next(this.years);
-      console.log("Years: ", this.years);
+      //console.log("Years: ", this.years);
     });
 
     this.supportService.getPropertyTypes().subscribe(data => {
       this.propertyType = data.domain?.valuesDomain;
       this.propertyTypeMessageSource.next(this.propertyType);
-      console.log("Property Types: ", this.propertyType);
+      //console.log("Property Types: ", this.propertyType);
     });
 
     this.supportService.getCountries().subscribe(data => {
       this.countries = data.domain?.valuesDomain;
       this.countriesMessageSource.next(this.countries);
-      console.log("Countries: ", this.countries);
+      //console.log("Countries: ", this.countries);
     });
 
     this.supportService.getCities().subscribe(data => {
       this.cities = data.domain?.valuesDomain;
       this.citiesMessageSource.next(this.cities);
-      console.log("Cities: ", this.cities);
+      //console.log("Cities: ", this.cities);
     });
 
     this.supportService.getGenders().subscribe(data => {
       this.genders = data.domain?.valuesDomain;
       this.gendersMessageSource.next(this.genders);
-      console.log("Genders: ", this.cities);
+      //console.log("Genders: ", this.cities);
     });
 
     this.supportService.getDocumentTypes().subscribe(data => {
       this.documentTypes = data.domain?.valuesDomain;
       this.documentTypesMessageSource.next(this.documentTypes);
-      console.log("Document Types: ", this.cities);
+      //console.log("Document Types: ", this.cities);
     });
 
     this.supportService.getNumberDependents().subscribe(data => {
       this.numberDependents = data.domain?.valuesDomain;
       this.numberDependentsMessageSource.next(this.numberDependents);
-      console.log("Number Dependents: ", this.numberDependents);
+      //console.log("Number Dependents: ", this.numberDependents);
     });
 
     this.supportService.getCivilStatus().subscribe(data => {
       this.civilStatus = data.domain?.valuesDomain;
       this.civilStatusMessageSource.next(this.civilStatus);
-      console.log("Civil Status: ", this.civilStatus);
+      //console.log("Civil Status: ", this.civilStatus);
     });
 
     this.supportService.getTimeResidenceAbroad().subscribe(data => {
       this.timeResidenceAbroad = data.domain?.valuesDomain;
       this.timeResidenceAbroadMessageSource.next(this.timeResidenceAbroad);
-      console.log("Time Residence Abroad: ", this.timeResidenceAbroad);
+      //console.log("Time Residence Abroad: ", this.timeResidenceAbroad);
     });
 
     this.supportService.getLevelStudies().subscribe(data => {
       this.levelStudies = data.domain?.valuesDomain;
       this.levelStudiesMessageSource.next(this.levelStudies);
-      console.log("Level Studies: ", this.levelStudies);
+      //console.log("Level Studies: ", this.levelStudies);
     });
 
     this.supportService.getResidenceType().subscribe(data => {
       this.residenceType = data.domain?.valuesDomain;
       this.residenceTypeMessageSource.next(this.residenceType);
-      console.log("Residence Type: ", this.residenceType);
+      //console.log("Residence Type: ", this.residenceType);
     });
 
     this.supportService.getOcupations().subscribe(data => {
       this.ocupations = data.domain?.valuesDomain;
       this.ocupationsMessageSource.next(this.ocupations);
-      console.log("Ocupations: ", this.ocupations);
+      //console.log("Ocupations: ", this.ocupations);
     });
 
     this.supportService.getContractType().subscribe(data => {
       this.contractType = data.domain?.valuesDomain;
       this.contractTypeMessageSource.next(this.contractType);
-      console.log("Contract Type: ", this.contractType);
+      //console.log("Contract Type: ", this.contractType);
     });
 
     this.supportService.getAntiquity().subscribe(data => {
       this.antiquity = data.domain?.valuesDomain;
       this.antiquityMessageSource.next(this.antiquity);
-      console.log("Antiquity: ", this.antiquity);
+      //console.log("Antiquity: ", this.antiquity);
     });
 
     this.supportService.getOperationType().subscribe(data => {
       this.operationType = data.domain?.valuesDomain;
       this.operationTypeMessageSource.next(this.operationType);
-      console.log("Operation Type: ", this.operationType);
+      //console.log("Operation Type: ", this.operationType);
     });
 
     this.supportService.getReferenceType().subscribe(data => {
       this.referenceType = data.domain?.valuesDomain;
       this.referenceTypeMessageSource.next(this.referenceType);
-      console.log("Reference Type: ", this.referenceType);
+      //console.log("Reference Type: ", this.referenceType);
     });
     
     this.supportService.getReraltionshipType().subscribe(data => {
       this.relationshipType = data.domain?.valuesDomain;
       this.relationshipTypeMessageSource.next(this.relationshipType);
-      console.log("Relationship Type: ", this.relationshipType);
+      //console.log("Relationship Type: ", this.relationshipType);
     });
     
   }

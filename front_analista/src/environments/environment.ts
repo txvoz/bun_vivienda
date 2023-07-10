@@ -133,8 +133,57 @@ export const environment = {
     signature: {
         send: {
             url: "/mocks/vivienda/signature/?id={id}",
-            //url: "http://10.122.7.10:8080/SrvIntHomeCreditDigital/signature/request/{id}", 
+            //url: "http://10.122.7.10:8080/SrvIntHomeCreditDigital/signature/request/{id}/confirmation", 
             needJwt: true
         }
     },
+    detailCancelRequest: {
+        resource: {
+            url: "/mocks/vivienda/detailCancelRequest/?id={id}",
+            //url: "http://10.122.7.10:8080/SrvIntHomeCreditDigital/status/request/{id}", 
+            needJwt: true
+        }
+    },
+    statusAnalyst: {
+        url:"http://10.122.7.10:8080/SrvIntSupportServices/domain/",
+        needJwt: false,
+        resources:  {
+            statusReturned: {
+                path: "CVD_StatusReturned"
+                //path: "/mocks/vivienda/statusException/StatusReturned/",
+            }, 
+            statusRefused: {
+                path: "CVD_StatusRefused"
+                //path:  "/mocks/vivienda/statusException/StatusRefused/",
+            }, 
+            statusApprovedException: {
+                path: "CVD_StatusApprovedException"
+                //path: "/mocks/vivienda/statusException/StatusApprovedException/",
+            }, 
+        }
+    },
+    byStates: {
+        resources: {
+            //url: "/mocks/vivienda/signature/?id={id}",
+            url: " http://10.122.7.10:8080/SrvIntHomeCreditDigital/status/request/{id}", 
+            needJwt: true
+        }
+    },
+    amountApproved: {
+        resources: {
+            //url: "/mocks/vivienda/signature/?id={id}",
+            url: "http://10.122.7.10:8080/SrvIntHomeCreditDigital/managment/request/{id}", 
+            needJwt: true
+        }
+    },
+    amountStudy: {
+        resources: {
+            //url: "/mocks/vivienda/signature/?id={id}",
+            url: "http://10.122.7.10:8080/SrvIntHomeCreditDigital/managment/request/{id}/amountstudy", 
+            needJwt: true
+        }
+    },
+
+
+    
 }

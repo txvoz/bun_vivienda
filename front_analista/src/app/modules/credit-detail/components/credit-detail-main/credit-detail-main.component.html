@@ -1,130 +1,132 @@
 <div class="jumbotron">
-    <app-navbar></app-navbar>
-    <div class="container" *ngIf="index>-1">
-        <div class="row"><br><br></div>
-        <div class="row">
-            <div class="col-sm-2">
-                <section class="custom-container">
-                    <div class="row">
-                        <div class="col-12">
-                            <h4 class="bun_blue">Información de la solicitud</h4>
-                        </div>
-
-                        <div class="col-12 detail-left">
-                            <div class="detail-icon user"></div>
-                            <div class="container">
-                                <h6>Analista asignado</h6>
-                                <p>{{datasource?.response?.analystName}}</p>
-                            </div>
-                        </div>
-
-                        <div class="col-12 detail-left">
-                            <div class="detail-icon doc"></div>
-                            <div class="container">
-                                <h6>Número de solicitud </h6>
-                                <p>{{datasource?.response?.idRequest}}</p>
-                            </div>
-                        </div>
-
-                        <div class="col-12 detail-left">
-                            <div class="detail-icon date"></div>
-                            <div class="container">
-                                <h6>Fecha de solicitud</h6>
-                                <p>{{datasource?.response?.createAt}}</p>
-                            </div>
-                        </div>
-
-                        <div class="col-12 detail-left">
-                            <div class="detail-icon state"></div>
-                            <div class="container">
-                                <h6>Estado</h6>
-                                <p>{{datasource?.response?.status}}</p>
-                            </div>
-                        </div>
-
-                        <div class="col-12 detail-left">
-                            <div class="detail-icon user"></div>
-                            <div class="container">
-                                <h6>Asesor broker</h6>
-                                <p>
-                                    {{datasource?.response?.brokerName}} <br>
-                                    ID: {{datasource?.response?.brokerDni}}</p>
-                            </div>
-                        </div>
-
-                    </div>
-                </section>
+  <app-navbar></app-navbar>
+  <div class="container" *ngIf="index > -1">
+    <div class="row"><br /><br /></div>
+    <div class="row">
+      <div class="col-sm-2">
+        <section class="custom-container">
+          <div class="row">
+            <div class="col-12">
+              <h4 class="bun_blue">Información de la solicitud</h4>
             </div>
-            <div class="col-sm-10">
 
-                <div class="row">
-                    <div class="col-12">
-                        <h2 class="bun_blue">Participantes asociados al crédito</h2>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12">
-                        <div class="row" style="padding: 15px;">
-                            <div *ngFor="let p of datasource?.response?.participants; index as i"
-                                class="col-auto content-person" [ngClass]="{'active' : index==i}"
-                                (click)="setPivote(i)">
-                                <div class="avatar">{{getAvatar(p)}}</div>
-                                <div class="group">
-                                    <label class="name">{{p?.names}}</label>
-                                    <ng-container>
-                                        <label class="type">{{p?.type}}</label>
-                                    </ng-container>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="col-12 detail-left">
+              <div class="detail-icon user"></div>
+              <div class="container">
+                <h6>Analista asignado</h6>
+                <p>{{ datasource?.response?.analystName }}</p>
+              </div>
+            </div>
 
-                <section class="custom-container" style="padding: 35px;">
-                    <div class="row">
-                        <div class="col-12">
-                            <h4 class="bun_blue">Datos deudor {{index+1}}.</h4>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-2 detail-left">
-                            <div class="detail-icon user"></div>
-                            <div class="container">
-                                <h6>Tipo de documento</h6>
-                                <p>{{pivote?.documentType}}</p>
-                            </div>
-                        </div>
-                        <div class="col-auto detail-left">
-                            <div class="detail-icon user"></div>
-                            <div class="container">
-                                <h6>Numero de documento</h6>
-                                <p>{{pivote?.dni}}</p>
-                            </div>
-                        </div>
-                        <div class="col-auto detail-left">
-                            <div class="detail-icon user"></div>
-                            <div class="container">
-                                <h6>Nombre completo</h6>
-                                <p>{{pivote?.names + " " + pivote?.lastNames}}</p>
-                            </div>
-                        </div>
-                        <div class="col-auto detail-left">
-                            <div class="detail-icon user"></div>
-                            <div class="container">
-                                <h6>Correo electronico</h6>
-                                <p>{{pivote?.email}}</p>
-                            </div>
-                        </div>
-                        <div class="col-auto detail-left">
-                            <div class="detail-icon user"></div>
-                            <div class="container">
-                                <h6>Numero de celular</h6>
-                                <p>{{pivote?.number}}</p>
-                            </div>
-                        </div>
-                    </div>
-                    <br>
-                    <div class="row">
+            <div class="col-12 detail-left">
+              <div class="detail-icon doc"></div>
+              <div class="container">
+                <h6>Número de solicitud</h6>
+                <p>{{ datasource?.response?.idRequest }}</p>
+              </div>
+            </div>
+
+            <div class="col-12 detail-left">
+              <div class="detail-icon date"></div>
+              <div class="container">
+                <h6>Fecha de solicitud</h6>
+                <p>{{ datasource?.response?.createAt }}</p>
+              </div>
+            </div>
+
+            <div class="col-12 detail-left">
+              <div class="detail-icon state"></div>
+              <div class="container">
+                <h6>Estado</h6>
+                <p>{{ datasource?.response?.status }}</p>
+              </div>
+            </div>
+
+            <div class="col-12 detail-left">
+              <div class="detail-icon user"></div>
+              <div class="container">
+                <h6>Asesor broker</h6>
+                <p>
+                  {{ datasource?.response?.brokerName }} <br />
+                  ID: {{ datasource?.response?.brokerDni }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+      <div class="col-sm-10">
+        <div class="row">
+          <div class="col-12">
+            <h2 class="bun_blue">Participantes asociados al crédito</h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <div class="row" style="padding: 15px">
+              <div
+                *ngFor="let p of datasource?.response?.participants; index as i"
+                class="col-auto content-person"
+                [ngClass]="{ active: index == i }"
+                (click)="setPivote(i)"
+              >
+                <div class="avatar">{{ getAvatar(p) }}</div>
+                <div class="group">
+                  <label class="name">{{ p?.names }}</label>
+                  <ng-container>
+                    <label class="type">{{ p?.type }}</label>
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <section class="custom-container" style="padding: 35px">
+          <div class="row">
+            <div class="col-12">
+              <h4 class="bun_blue">Datos deudor {{ index + 1 }}.</h4>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-auto detail-left">
+              <div class="detail-icon carnet"></div>
+              <div class="container">
+                <h6>Tipo de documento</h6>
+                <p>{{ pivote?.documentType }}</p>
+              </div>
+            </div>
+            <div class="col-auto detail-left">
+              <div class="detail-icon carnet"></div>
+              <div class="container">
+                <h6>Número de documento</h6>
+                <p>{{ pivote?.dni }}</p>
+              </div>
+            </div>
+            <div class="col-auto detail-left">
+              <div class="detail-icon user"></div>
+              <div class="container">
+                <h6>Nombre completo</h6>
+                <p>{{ pivote?.names + " " + pivote?.lastNames }}</p>
+              </div>
+            </div>
+            <div class="col-auto detail-left">
+              <div class="detail-icon email"></div>
+              <div class="container">
+                <h6>Correo electrónico</h6>
+                <p>{{ pivote?.email }}</p>
+              </div>
+            </div>
+            <div class="col-auto detail-left">
+              <div class="detail-icon phone"></div>
+              <div class="container">
+                <h6>Número celular</h6>
+                <p>{{ pivote?.number }}</p>
+              </div>
+            </div>
+          </div>
+          <br />
+          <!--  <div class="row">
                         <div class="col-12">
                             <h4>Documentos soporte del proceso.</h4>
                         </div>
@@ -207,146 +209,400 @@
                                 <button class="btn btn-primary principal_white btn_small">Subir archivo</button>
                             </div>
                         </div>
-                    </div>
-                    <br>
+                    </div> -->
+          <br />
 
-                    <div class="row">
-                        <div class="col-12">
-                            <h4 class="bun_blue">Entrevista y conocimiento del cliente.</h4>
-                        </div>
-                    </div>
-
-                    <form [formGroup]="form" (ngSubmit)="submit()" id="formx">
-                        <div class="row">
-                            <div class="col-12">
-                                <label for="">Resultado de la entrevista</label>
-                                <textarea class="form-control form-control-lg" name="result_interview"
-                                    id="result_interview" formControlName="result_interview"></textarea>
-                                <div *ngIf="form.controls['result_interview'].invalid && isSubmited"
-                                    class="input-feedback">
-                                    <label *ngIf="form.controls['result_interview'].errors?.['required']">
-                                        Dato requerido.
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-2 radio-order">
-                                <label><b>Declara renta? </b></label> <br>
-                                <input type="radio" value="1" name="declare_income" id="declare_income_1"
-                                    formControlName="declare_income" /> <label for="declare_income_1">Si</label>
-                                <input type="radio" value="2" name="declare_income" id="declare_income_2"
-                                    formControlName="declare_income" /> <label for="declare_income_2">No</label>
-                                <div *ngIf="form.controls['declare_income'].invalid && isSubmited"
-                                    class="input-feedback">
-                                    <label *ngIf="form.controls['declare_income'].errors?.['required']">
-                                        Dato requerido.
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <label for="origin_assets">Origen de bienes o fondos</label>
-                                <input type="text" name="origin_assets" id="origin_assets"
-                                    formControlName="origin_assets" placeholder="Ingrese el origen" required
-                                    class="form-control form-control-lg" />
-                                <div *ngIf="form.controls['origin_assets'].invalid && isSubmited"
-                                    class="input-feedback">
-                                    <label *ngIf="form.controls['origin_assets'].errors?.['required']">
-                                        Dato requerido.
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-4"></div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-2 radio-order">
-                                <label><b>¿Débito automática?</b></label> <br>
-                                <input type="radio" value="1" name="automatic_debit" id="automatic_debit_1"
-                                    formControlName="automatic_debit" /> <label for="automatic_debit_1">Si</label>
-                                <input type="radio" value="2" name="automatic_debit" id="automatic_debit_2"
-                                    formControlName="automatic_debit" /> <label for="automatic_debit_2">No</label>
-                                <div *ngIf="form.controls['automatic_debit'].invalid && isSubmited"
-                                    class="input-feedback">
-                                    <label *ngIf="form.controls['automatic_debit'].errors?.['required']">
-                                        Dato requerido.
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <label for="account_number">Número de Cuenta</label>
-                                <input type="text" name="account_number" id="account_number"
-                                    formControlName="account_number" placeholder="Numero de cuenta" required
-                                    class="form-control form-control-lg" />
-                                <div *ngIf="form.controls['account_number'].invalid && isSubmited"
-                                    class="input-feedback">
-                                    <label *ngIf="form.controls['account_number'].errors?.['required']">
-                                        Dato requerido.
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-4"></div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-6">
-                                <label for="payment_method">Método de pago</label>
-                                <input type="text" name="payment_method" id="payment_method"
-                                    formControlName="payment_method" placeholder="Método de pago" required
-                                    class="form-control form-control-lg" />
-                                <div *ngIf="form.controls['payment_method'].invalid && isSubmited"
-                                    class="input-feedback">
-                                    <label *ngIf="form.controls['payment_method'].errors?.['required']">
-                                        Dato requerido.
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <label for="other">¿Cuál?</label>
-                                <input type="text" name="other" id="other" formControlName="other"
-                                    placeholder="Escribe otro metodo de pago" required
-                                    class="form-control form-control-lg" />
-                                <div *ngIf="form.controls['other'].invalid && isSubmited" class="input-feedback">
-                                    <label *ngIf="form.controls['other'].errors?.['required']">
-                                        Dato requerido.
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-
-
-                </section>
-
-                <br>
-                <div class="row">
-                    <div class="col-12">
-                        <button class="btn btn-primary mb-3 float-end principal_gray"
-                            type="button" style="margin-left: 10px;width: 300px;" (click)="editRequest()">Agregar un participante</button>
-
-                        <button class="btn btn-primary mb-3 float-end principal_gray"
-                            type="button" style="width: 250px;" (click)="editRequest(true)">Editar solicitud </button>
-                    </div>
-                </div>
-
-                <br>
-                <div class="row">
-                    <div class="col-5">
-                        <p class="float-end">
-                            Una vez se encuentren los documentos completos, puedes enviarlos a revisión por el analista de crédito o guardar la solicitud.
-                        </p>
-                    </div>
-                    <div class="col-7">
-                        <button class="btn btn-primary mb-3 float-end principal_blue"
-                            type="button" style="margin-left: 10px;width: 300px;" (click)="sendSignature()">Enviar a firma</button>
-
-                        <button class="btn btn-primary mb-3 float-end principal_white"
-                            type="button" style="width: 250px;" (click)="submit()">Guardar cambios</button>
-                    </div>
-                </div>
+          <div class="row">
+            <div class="col-12">
+              <h5 class="bun_blue">Entrevista y conocimiento del cliente.</h5>
             </div>
+          </div>
+
+          <form [formGroup]="form" (ngSubmit)="submit()" id="formx">
+            <div class="row">
+              <div class="col-12">
+                <label for="">Resultado de la entrevista</label>
+                <textarea
+                  class="form-control form-control-lg"
+                  name="result_interview"
+                  id="result_interview"
+                  formControlName="result_interview"
+                ></textarea>
+                <div
+                  *ngIf="
+                    form.controls['result_interview'].invalid && isSubmited
+                  "
+                  class="input-feedback"
+                >
+                  <label
+                    *ngIf="form.controls['result_interview'].errors?.['required']"
+                  >
+                    Dato requerido.
+                  </label>
+                </div>
+              </div>
+            </div>
+            <br />
+            <div class="row">
+              <div class="col-2 radio-order">
+                <label><b>Declara renta? </b></label> <br />
+                <input
+                  type="radio"
+                  value="1"
+                  name="declare_income"
+                  id="declare_income_1"
+                  formControlName="declare_income"
+                />
+                <label for="declare_income_1">Si</label>
+                <input
+                  type="radio"
+                  value="2"
+                  name="declare_income"
+                  id="declare_income_2"
+                  formControlName="declare_income"
+                />
+                <label for="declare_income_2">No</label>
+                <div
+                  *ngIf="form.controls['declare_income'].invalid && isSubmited"
+                  class="input-feedback"
+                >
+                  <label
+                    *ngIf="form.controls['declare_income'].errors?.['required']"
+                  >
+                    Dato requerido.
+                  </label>
+                </div>
+              </div>
+              <div class="col-6">
+                <label for="origin_assets">Origen de bienes o fondos</label>
+                <input
+                  type="text"
+                  name="origin_assets"
+                  id="origin_assets"
+                  formControlName="origin_assets"
+                  placeholder="Ingrese el origen"
+                  required
+                  class="form-control form-control-lg"
+                />
+                <div
+                  *ngIf="form.controls['origin_assets'].invalid && isSubmited"
+                  class="input-feedback"
+                >
+                  <label
+                    *ngIf="form.controls['origin_assets'].errors?.['required']"
+                  >
+                    Dato requerido.
+                  </label>
+                </div>
+              </div>
+              <div class="col-4"></div>
+            </div>
+            <br />
+            <div class="row">
+              <div class="col-2 radio-order">
+                <label><b>¿Débito automática?</b></label> <br />
+                <input
+                  type="radio"
+                  value="1"
+                  name="automatic_debit"
+                  id="automatic_debit_1"
+                  formControlName="automatic_debit"
+                />
+                <label for="automatic_debit_1">Si</label>
+                <input
+                  type="radio"
+                  value="2"
+                  name="automatic_debit"
+                  id="automatic_debit_2"
+                  formControlName="automatic_debit"
+                />
+                <label for="automatic_debit_2">No</label>
+                <div
+                  *ngIf="form.controls['automatic_debit'].invalid && isSubmited"
+                  class="input-feedback"
+                >
+                  <label
+                    *ngIf="form.controls['automatic_debit'].errors?.['required']"
+                  >
+                    Dato requerido.
+                  </label>
+                </div>
+              </div>
+              <div class="col-6">
+                <label for="account_number">Número de Cuenta</label>
+                <input
+                  type="text"
+                  name="account_number"
+                  id="account_number"
+                  formControlName="account_number"
+                  placeholder="Numero de cuenta"
+                  required
+                  class="form-control form-control-lg"
+                />
+                <div
+                  *ngIf="form.controls['account_number'].invalid && isSubmited"
+                  class="input-feedback"
+                >
+                  <label
+                    *ngIf="form.controls['account_number'].errors?.['required']"
+                  >
+                    Dato requerido.
+                  </label>
+                </div>
+              </div>
+              <div class="col-4"></div>
+            </div>
+            <br />
+            <div class="row">
+              <div class="col-6">
+                <label for="payment_method">Método de pago</label>
+                <input
+                  type="text"
+                  name="payment_method"
+                  id="payment_method"
+                  formControlName="payment_method"
+                  placeholder="Método de pago"
+                  required
+                  class="form-control form-control-lg"
+                />
+                <div
+                  *ngIf="form.controls['payment_method'].invalid && isSubmited"
+                  class="input-feedback"
+                >
+                  <label
+                    *ngIf="form.controls['payment_method'].errors?.['required']"
+                  >
+                    Dato requerido.
+                  </label>
+                </div>
+              </div>
+              <div class="col-6">
+                <label for="other">¿Cuál?</label>
+                <input
+                  type="text"
+                  name="other"
+                  id="other"
+                  formControlName="other"
+                  placeholder="Escribe otro metodo de pago"
+                  required
+                  class="form-control form-control-lg"
+                />
+                <div
+                  *ngIf="form.controls['other'].invalid && isSubmited"
+                  class="input-feedback"
+                >
+                  <label *ngIf="form.controls['other'].errors?.['required']">
+                    Dato requerido.
+                  </label>
+                </div>
+              </div>
+            </div>
+          </form>
+        </section>
+
+        <br />
+
+        <section class="custom-container" style="padding: 35px">
+          <div class="row">
+            <div class="col-12">
+              <h5 class="bun_blue">Validación comercial</h5>
+            </div>
+          </div>
+
+          <br />
+
+          <form [formGroup]="form" (ngSubmit)="submit()" id="formx">
+
+            <!-- Los botones de estado -->
+            <div class="row">
+              <div class="col-lg-3 col-md-12">
+                <button
+                  class="background-state button-state color-font"
+                  (click)="documentValidation()"
+                >
+                Validación de documento
+                </button>
+              </div>
+
+              <div class="col-lg-3 col-md-12">
+                <button
+                  class="background-state button-state color-font1"
+                  (click)="report()"
+                >
+                Entrevista
+                </button>
+              </div>
+
+              <div class="col-lg-3 col-md-12">
+                <button
+                  class="background-state button-state color-font2"
+                  (click)="withdrawn()"
+                >
+                  Desistido
+                </button>
+              </div>
+            </div>
+
+            <br />
+
+            <!-- Como se muestran las opciones seleccionadas -->
+            <div class="row">
+              <div class="col" *ngFor="let option of selectedOptions">
+                <button class="option-select">
+                  <span class="button-text">{{ option }}</span>
+                  <strong class="x" (click)="deselectOption(option)">X</strong>
+                </button>
+              </div>
+            </div>
+
+            <!-- Select -->
+            <div >
+              <div class="col-sm-12 col-md-6">
+                <label class="label-style" for="origin_assets"
+                  >Conoce la causa de la validación
+                </label>
+              </div>
+
+              <div class="custom-select-wrapper col-sm-12 col-md-4">
+                <div
+                  class="custom-select form-select"
+                  (click)="toggleOptions()"
+                >
+                  <div class="selected-option">
+                    <!--{{ selectedOptions.length }} -->
+                    Seleccione una causa
+                  </div>
+                </div>
+                <div class="options" [class.open]="optionsOpen">
+                  <div
+                    *ngFor="let option of selectOptions"
+                    (click)="toggleOption(option)"
+                  >
+                    <input
+                      type="checkbox"
+                      [checked]="selectedOptions.includes(option)"
+                    />
+                    {{ option }}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <br />
+
+            <div class="col-sm-12 col-md-3">
+              <label class="label-style" for="amountStudy"
+                >Monto para estudio</label
+              >
+              <input
+                type="text"
+                name="amountStudy"
+                id="amountStudy"
+                formControlName="amountStudy"
+                autocomplete="off"
+                placeholder="$"
+                required
+                class="form-control form-control-lg"
+                appOnlyNumbers
+              />
+            </div>
+            <br />
+
+          </form>
+        </section>
+
+        <br />
+        <div class="row">
+          <div class="col-12">
+            <button
+              class="btn btn-primary mb-3 float-end principal_gray"
+              type="button"
+              style="margin-left: 10px; width: 300px"
+              (click)="editRequest()"
+            >
+              Agregar un participante
+            </button>
+
+            <button
+              class="btn btn-primary mb-3 float-end principal_gray"
+              type="button"
+              style="width: 250px"
+              (click)="editRequest(true)"
+            >
+              Editar solicitud
+            </button>
+          </div>
         </div>
+
+        <br />
+        <div class="row">
+          <div class="col-5">
+            <p class="float-end">
+              Una vez se encuentren los documentos completos, puedes enviarlos a
+              revisión por el analista de crédito o guardar la solicitud.
+            </p>
+          </div>
+          <div class="col-7">
+            <button
+              class="btn btn-primary mb-3 float-end principal_blue"
+              type="button"
+              style="margin-left: 10px; width: 300px"
+              (click)="sendSignature()"
+            >
+              Enviar a firma
+            </button>
+
+            <button
+              class="btn btn-primary mb-3 float-end principal_white"
+              type="button"
+              style="width: 250px"
+              (click)="submit()"
+            >
+              Guardar cambios
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
-    <app-footer></app-footer>
+  </div>
+  <app-footer></app-footer>
+</div>
+
+<!-- Modal -->
+<div id="myModal" class="modal">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button
+          id="closeBtn"
+          (click)="closeModal()"
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body text-center">
+        <img src="../../../../../assets/toggle_buttons/save.png" alt="" />
+        <h2 class="bun_blue" style="margin-top: 25px; margin-bottom: 25px">
+          ¡Listo!
+        </h2>
+        <p style="font-size: 20px">
+          La información que registraste se guardó exitosamente.
+        </p>
+      </div>
+      <div class="modal-footer justify-content-center" style="margin-bottom: 40px">
+        <button
+          id="closeBtn"
+          (click)="closeModal()"
+          type="button"
+          class="btn btn-primary principal_blue"
+          data-bs-dismiss="modal"
+          style="width: 225px"
+        >
+          Cerrar
+        </button>
+      </div>
+    </div>
+  </div>
 </div>

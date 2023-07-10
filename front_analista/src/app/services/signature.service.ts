@@ -23,8 +23,9 @@ export class SignatureService extends ApiGeneral {
   send(id: string): Observable<SignatureResponse> {
     console.log("Signature::send::" + id);
     let idPath = this.URL;
-    idPath = idPath.replace(/{id}/g, id);
-    return super.get(idPath);
+    idPath = idPath.replace(/{id}/g, id)+ '/confirmation';
+    const data = {}
+    return super.post(idPath,data);
   }
 
 }

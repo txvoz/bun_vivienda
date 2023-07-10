@@ -10,6 +10,14 @@ body,
     font-style: normal;
 }
 
+
+@font-face {
+    font-family: 'Lato';
+    src: url('src/assets/font/Lato/Lato-Regular.ttf') format('ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
 .input-feedback label {
     color: red;
 }
@@ -65,7 +73,7 @@ button {
     gap: 10px;
     font-family: 'Lato';
     font-style: normal;
-    font-weight: 700;
+    font-weight: 600;
     font-size: 16px;
     line-height: 140%;
     /* or 22px */
@@ -177,6 +185,10 @@ button {
 
 a.blue {
     color: #15A4E0;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
 }
 
 table,
@@ -199,11 +211,17 @@ table thead {
 
 table thead th {
     padding: 20px;
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 500;
 }
 
 table tbody td {
     border-bottom: 1px solid #B6B6BA;
     padding: 20px;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
 }
 
 .pagination {
@@ -269,6 +287,22 @@ table tbody td {
 
 .detail-icon.state {
     background-image: url('src/assets/state.png');
+}
+
+.detail-icon.clean {
+    background-image: url('src/assets/clean.png');
+}
+
+.detail-icon.carnet {
+    background-image: url('src/assets/carnet.png');
+}
+
+.detail-icon.email {
+    background-image: url('src/assets/email.png');
+}
+
+.detail-icon.phone{
+    background-image: url('src/assets/phone.png');
 }
 
 .file-content {

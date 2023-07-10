@@ -23,7 +23,7 @@ import { CreditListModule } from './modules/credit-list/credit-list.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     ReactiveFormsModule, 

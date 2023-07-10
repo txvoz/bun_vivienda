@@ -1,3 +1,7 @@
+.container, .container-lg, .container-md, .container-sm, .container-xl {
+    max-width: -webkit-fill-available;
+}
+
 .custom-container {
     padding: 15px;
     background: #FFFFFF;
@@ -40,3 +44,13 @@
 .content-person {
     cursor: pointer;
 }
+
+.modal-header {
+    border-bottom: none;
+}
+
+.modal-footer {
+    border-top: none;
+}
+
+

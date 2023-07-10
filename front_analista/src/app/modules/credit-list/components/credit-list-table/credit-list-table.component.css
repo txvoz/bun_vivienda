@@ -1,5 +1,36 @@
 .content-table {
-    width: 100%;
-    background-color: #fff;
-    padding: 50px;
+  width: 100%;
+  background-color: #fff;
+  padding: 50px;
+}
+
+.icons {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 5px;
+}
+
+.icons.arrow1 {
+  background-image: url("../../../../../assets/toggle_buttons/arrow1.png");
+  background-repeat: no-repeat;
+  width: 16px;
+  height: 12px;
+  cursor: pointer;
+}
+
+.sort-header {
+  display: flex;
+  align-items: center;
+}
+
+.modal-header {
+  border-bottom: none;
+}
+
+.modal-footer {
+  border-top: none;
+}
+
+.modal-lg, .modal-xl {
+  --bs-modal-width: 600px;
 }
